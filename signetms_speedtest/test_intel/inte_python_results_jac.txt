@@ -1,0 +1,6 @@
+Trying to derivate: -  p1 * S -  (p2 * R * S - p3 * RS)  in respect to S
+f(X) -  p1 *  X  -  (p2 * R *  X  - p3 * RS) 
+df(X)/dX = -R*p2 - p1
+Returning: -R*p2 - p1
+Trying to derivate: -  p1 * S -  (p2 * R * S - p3 * RS)  in respect to dS
+f(X) -  p1 * S -  (p2 * R * S - p3 * RS) 
