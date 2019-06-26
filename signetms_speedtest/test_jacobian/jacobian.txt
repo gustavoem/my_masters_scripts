@@ -1,0 +1,9 @@
+Using 1  we got average time of 288.931
+Using 2  we got average time of 163.180
+Using 4  we got average time of 109.095
+Using 8  we got average time of 68.274
+Using 12  we got average time of 58.361
+Using 16  we got average time of 57.479
+Using 24  we got average time of 43.035
+Using 32  we got average time of 43.021
+Using 48  we got average time of 43.174
