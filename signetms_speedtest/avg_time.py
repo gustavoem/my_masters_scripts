@@ -43,6 +43,7 @@ n_process_list = [1, 2, 4, 8, 12, 16, 24, 32, 48]
 for n_process in n_process_list:
     total_time = 0
     for _ in range (repetitions):
+        print ("nprocess - ", n_process, ", iteration - ", _, "done!")
         total_time += get_exec_time (odes, experiments, theta_priors, \
                 n_iterations, n_process)
     avg_time = total_time / float (repetitions)

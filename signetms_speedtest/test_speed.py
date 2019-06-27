@@ -16,7 +16,7 @@ import time
 
 def run_sampler (temp, ode, experiments, theta_priors, iterations):
     acc_mcmc = AcceptingRateAMCMC (theta_priors, ode, experiments, \
-            iterations, verbose=False)
+            iterations, verbose=True)
     acc_mcmc.set_temperature (temp)
     acc_mcmc.start_sample_from_prior ()
     acc_mcmc.get_sample (iterations)

@@ -39,7 +39,7 @@ odes = sbml_to_odes (sbml)
 experiments = ExperimentSet (experiment_file)
 theta_priors = define_sbml_params_priors (sbml, priors_file)
 
-n_process_list = [6, 8, 12, 16]
+n_process_list = [6]
 for n_process in n_process_list:
     total_time = 0
     for _ in range (repetitions):
