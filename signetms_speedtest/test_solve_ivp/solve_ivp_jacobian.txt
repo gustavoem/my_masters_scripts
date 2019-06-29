@@ -48,7 +48,7 @@ nprocess -  4 , iteration -  46 done!
 nprocess -  4 , iteration -  47 done!
 nprocess -  4 , iteration -  48 done!
 nprocess -  4 , iteration -  49 done!
-Using 4  we got average time of 7.611
+Using 4  we got average time of 10.158
 nprocess -  8 , iteration -  0 done!
 nprocess -  8 , iteration -  1 done!
 nprocess -  8 , iteration -  2 done!
@@ -99,7 +99,7 @@ nprocess -  8 , iteration -  46 done!
 nprocess -  8 , iteration -  47 done!
 nprocess -  8 , iteration -  48 done!
 nprocess -  8 , iteration -  49 done!
-Using 8  we got average time of 5.869
+Using 8  we got average time of 6.771
 nprocess -  12 , iteration -  0 done!
 nprocess -  12 , iteration -  1 done!
 nprocess -  12 , iteration -  2 done!
@@ -150,7 +150,7 @@ nprocess -  12 , iteration -  46 done!
 nprocess -  12 , iteration -  47 done!
 nprocess -  12 , iteration -  48 done!
 nprocess -  12 , iteration -  49 done!
-Using 12  we got average time of 5.583
+Using 12  we got average time of 5.704
 nprocess -  16 , iteration -  0 done!
 nprocess -  16 , iteration -  1 done!
 nprocess -  16 , iteration -  2 done!
@@ -201,7 +201,7 @@ nprocess -  16 , iteration -  46 done!
 nprocess -  16 , iteration -  47 done!
 nprocess -  16 , iteration -  48 done!
 nprocess -  16 , iteration -  49 done!
-Using 16  we got average time of 5.607
+Using 16  we got average time of 5.552
 nprocess -  24 , iteration -  0 done!
 nprocess -  24 , iteration -  1 done!
 nprocess -  24 , iteration -  2 done!
@@ -252,7 +252,7 @@ nprocess -  24 , iteration -  46 done!
 nprocess -  24 , iteration -  47 done!
 nprocess -  24 , iteration -  48 done!
 nprocess -  24 , iteration -  49 done!
-Using 24  we got average time of 5.030
+Using 24  we got average time of 3.964
 nprocess -  32 , iteration -  0 done!
 nprocess -  32 , iteration -  1 done!
 nprocess -  32 , iteration -  2 done!
@@ -303,7 +303,7 @@ nprocess -  32 , iteration -  46 done!
 nprocess -  32 , iteration -  47 done!
 nprocess -  32 , iteration -  48 done!
 nprocess -  32 , iteration -  49 done!
-Using 32  we got average time of 5.030
+Using 32  we got average time of 3.954
 nprocess -  48 , iteration -  0 done!
 nprocess -  48 , iteration -  1 done!
 nprocess -  48 , iteration -  2 done!
@@ -354,4 +354,4 @@ nprocess -  48 , iteration -  46 done!
 nprocess -  48 , iteration -  47 done!
 nprocess -  48 , iteration -  48 done!
 nprocess -  48 , iteration -  49 done!
-Using 48  we got average time of 4.931
+Using 48  we got average time of 3.981
