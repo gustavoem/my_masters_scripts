@@ -1,0 +1,17 @@
+solve_ivp with Jacobian
+Using 4  we got average time of 93.628
+Using 8  we got average time of 71.670
+Using 12  we got average time of 59.279
+Using 16  we got average time of 60.003
+Using 24  we got average time of 47.877
+Using 32  we got average time of 44.327
+Using 48  we got average time of 72.239
+
+using odeint
+Using 4  we got average time of 64.122
+Using 8  we got average time of 45.162
+Using 12  we got average time of 39.784
+Using 16  we got average time of 39.921
+Using 24  we got average time of 34.001
+Using 32  we got average time of 34.120
+Using 48  we got average time of 34.335

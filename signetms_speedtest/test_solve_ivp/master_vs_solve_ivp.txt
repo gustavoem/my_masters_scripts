@@ -15,3 +15,12 @@ Using 16  we got average time of 5.552
 Using 24  we got average time of 3.964
 Using 32  we got average time of 3.954
 Using 48  we got average time of 3.981
+
+Using solve_ivp without Jacobian
+Using 4  we got average time of 77.123
+Using 8  we got average time of 76.657
+Using 12  we got average time of 276.836
+Using 16  we got average time of 272.614
+Using 24  we got average time of 9.310
+Using 32  we got average time of 9.610
+Using 48  we got average time of 9.687

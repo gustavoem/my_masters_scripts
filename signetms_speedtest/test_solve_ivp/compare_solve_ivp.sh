@@ -7,16 +7,16 @@
 cd ~/cs/SigNetMS && git checkout master && cd -
 
 # Run master
-python3 ../avg_time.py ~/cs/SigNetMS/input/bioinformatics/model1.xml ~/cs/SigNetMS/input/bioinformatics/model.priors ~/cs/SigNetMS/input/bioinformatics/experiment.data 10 50 > master.txt
+python3 ../avg_time.py ~/cs/SigNetMS/input/bioinformatics/model1.xml ~/cs/SigNetMS/input/bioinformatics/model.priors ~/cs/SigNetMS/input/bioinformatics/experiment.data 100 50 > master.txt
 
 # Then change to scipy_solve_ivp branch
-cd ~/cs/SigNetMS && git checkout scipy_solve_ivp && cd -
+#cd ~/cs/SigNetMS && git checkout scipy_solve_ivp && cd -
 
 # Then run again
-python3 ../avg_time.py ~/cs/SigNetMS/input/bioinformatics/model1.xml ~/cs/SigNetMS/input/bioinformatics/model.priors ~/cs/SigNetMS/input/bioinformatics/experiment.data 10 50 > solve_ivp.txt
+#python3 ../avg_time.py ~/cs/SigNetMS/input/bioinformatics/model1.xml ~/cs/SigNetMS/input/bioinformatics/model.priors ~/cs/SigNetMS/input/bioinformatics/experiment.data 10 50 > solve_ivp.txt
 
 # Then change to scipy_solve_ivp_jac branch
 cd ~/cs/SigNetMS && git checkout scipy_solve_ivp_jac && cd -
 
 # Then run again
-python3 ../avg_time.py ~/cs/SigNetMS/input/bioinformatics/model1.xml ~/cs/SigNetMS/input/bioinformatics/model.priors ~/cs/SigNetMS/input/bioinformatics/experiment.data 10 50 > solve_ivp_jacobian.txt
+python3 ../avg_time.py ~/cs/SigNetMS/input/bioinformatics/model1.xml ~/cs/SigNetMS/input/bioinformatics/model.priors ~/cs/SigNetMS/input/bioinformatics/experiment.data 100 50 > solve_ivp_jacobian.txt
