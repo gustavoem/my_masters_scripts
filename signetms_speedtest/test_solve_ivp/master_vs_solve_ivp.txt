@@ -1,26 +1,8 @@
-Using master implementation (odeint)
-Using 4  we got average time of 7.611
-Using 8  we got average time of 5.869
-Using 12  we got average time of 5.583
-Using 16  we got average time of 5.607
-Using 24  we got average time of 5.030
-Using 32  we got average time of 5.030
-Using 48  we got average time of 4.931
-
-Using Jacobian with solve_ivp
-Using 4  we got average time of 10.158
-Using 8  we got average time of 6.771
-Using 12  we got average time of 5.704
-Using 16  we got average time of 5.552
-Using 24  we got average time of 3.964
-Using 32  we got average time of 3.954
-Using 48  we got average time of 3.981
-
-Using solve_ivp without Jacobian
-Using 4  we got average time of 77.123
-Using 8  we got average time of 76.657
-Using 12  we got average time of 276.836
-Using 16  we got average time of 272.614
-Using 24  we got average time of 9.310
-Using 32  we got average time of 9.610
-Using 48  we got average time of 9.687
+# of process    odeint avg. time (s)    solve_ivp avg. time (s)
+4               7.611                   77.123
+8               5.869                   76.657
+12              5.583                   276.836
+16              5.607                   272.614
+24              5.030                   9.310
+32              5.030                   9.610
+48              4.931                   9.687
