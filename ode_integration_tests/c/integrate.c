@@ -29,19 +29,34 @@ static int f(realtype t, N_Vector y, N_Vector ydot, void *f_data)
 int main(int argc, char **argv)
 {
     SimpleCVODESolver *solver = new_cvode_solver(STIFF_INTEGRATOR);
-    int i, m = 1000000, n = 5;
+    int i, n = 5, m;
     float t0 = 0;
     float tf = 100;
-    float *y0, *args;
-    float *t = malloc(m * sizeof (float));
+    float *y0, *args, *t;
     float **result;
 
-    if (argc != 7)
+    if (argc != 8)
     {
         printf("Wrong number of parameters!\n");
         return -1;
     }
-    
+    args = malloc(7 * sizeof (float));
+    m = atoi(argv[1]);
+    args[0] = atof(argv[2]);
+    args[1] = atof(argv[3]);
+    args[2] = atof(argv[4]);
+    args[3] = atof(argv[5]);
+    args[4] = atof(argv[6]);
+    args[5] = atof(argv[7]);
+    /*printf("m = %d\n", m);*/
+    /*printf("args[0] = %.3f\n", args[0]);*/
+    /*printf("args[1] = %.3f\n", args[1]);*/
+    /*printf("args[2] = %.3f\n", args[2]);*/
+    /*printf("args[3] = %.3f\n", args[3]);*/
+    /*printf("args[4] = %.3f\n", args[4]);*/
+    /*printf("args[5] = %.3f\n", args[5]);*/
+
+    t = malloc(m * sizeof (float));
     for (i = 0; i < m; i++)
         t[i] = tf * (i + 1) / (float) m;
     y0 = malloc(n * sizeof (float));
@@ -50,15 +65,7 @@ int main(int argc, char **argv)
     y0[2] = 1;
     y0[3] = 0;
     y0[4] = 0;
-   
-    args = malloc(6 * sizeof (float));
-    args[0] = atof(argv[1]);
-    args[1] = atof(argv[2]);
-    args[2] = atof(argv[3]);
-    args[3] = atof(argv[4]);
-    args[4] = atof(argv[5]);
-    args[5] = atof(argv[6]);
-
+    
     init_solver(solver, f, t0, y0, n);
     set_tolerance(solver, 1e-8, 1e-8);
     prepare_solver(solver);
