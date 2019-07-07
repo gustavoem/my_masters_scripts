@@ -1,4 +1,5 @@
 from scipy.integrate import odeint
+import random
 import sys
 
 def system_function(t, state, args):
@@ -21,15 +22,19 @@ def system_function(t, state, args):
     dstatedt[4] = p4 * RS - (p5 * Rpp / (p6 + Rpp))
     return dstatedt
 
+def set_rand_args():
+    args = [random.random () for _ in range (6)]
+    for i in range(len(args)):
+        if random.random () > .5:
+            args[i] *= 10
+    return args
+
+
 y0 = [1, 0, 1, 0, 0]
-args = [0] * 6
-m = int(sys.argv[1])
-args[0] = float(sys.argv[2])
-args[1] = float(sys.argv[3])
-args[2] = float(sys.argv[4])
-args[3] = float(sys.argv[5])
-args[4] = float(sys.argv[6])
-args[5] = float(sys.argv[7])
+m = 20 # number of time steps
+reps = int(sys.argv[1])
 t = [(x + 1) * 100 / m for x in range (m)]
-odeint(system_function, y0, t, atol=1e-8, rtol=1e-8, args=(args,), 
-        tfirst=True)
+args = set_rand_args()
+for _ in range(reps):
+    odeint(system_function, y0, t, atol=1e-8, rtol=1e-8, args=(args,), 
+            tfirst=True)

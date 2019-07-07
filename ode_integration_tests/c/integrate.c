@@ -2,6 +2,7 @@
 #include <nvector/nvector_serial.h>
 #include <stdlib.h>
 #include <math.h>
+#include <time.h>
 
 
 static int f(realtype t, N_Vector y, N_Vector ydot, void *f_data) 
@@ -26,36 +27,37 @@ static int f(realtype t, N_Vector y, N_Vector ydot, void *f_data)
     return 0;
 }
 
+
+void set_rand_args(float *args)
+{
+    int i;
+    for (i = 0; i < 6; i++)
+    {
+        args[i] = (rand() / (float) RAND_MAX);
+        if (rand () / (float) RAND_MAX > .5)
+            args[i] *= 10;
+    }
+}
+
+
 int main(int argc, char **argv)
 {
     SimpleCVODESolver *solver = new_cvode_solver(STIFF_INTEGRATOR);
-    int i, n = 5, m;
+    int i, j, n = 5, m = 20, reps;
     float t0 = 0;
-    float tf = 100;
+    float tf = 120;
     float *y0, *args, *t;
     float **result;
-
-    if (argc != 8)
+    
+    srand(time(0));
+    if (argc != 2)
     {
         printf("Wrong number of parameters!\n");
         return -1;
     }
-    args = malloc(7 * sizeof (float));
-    m = atoi(argv[1]);
-    args[0] = atof(argv[2]);
-    args[1] = atof(argv[3]);
-    args[2] = atof(argv[4]);
-    args[3] = atof(argv[5]);
-    args[4] = atof(argv[6]);
-    args[5] = atof(argv[7]);
-    /*printf("m = %d\n", m);*/
-    /*printf("args[0] = %.3f\n", args[0]);*/
-    /*printf("args[1] = %.3f\n", args[1]);*/
-    /*printf("args[2] = %.3f\n", args[2]);*/
-    /*printf("args[3] = %.3f\n", args[3]);*/
-    /*printf("args[4] = %.3f\n", args[4]);*/
-    /*printf("args[5] = %.3f\n", args[5]);*/
-
+    args = malloc(6 * sizeof (float));
+    reps = atoi(argv[1]);
+    
     t = malloc(m * sizeof (float));
     for (i = 0; i < m; i++)
         t[i] = tf * (i + 1) / (float) m;
@@ -65,19 +67,34 @@ int main(int argc, char **argv)
     y0[2] = 1;
     y0[3] = 0;
     y0[4] = 0;
-    
+     
     init_solver(solver, f, t0, y0, n);
     set_tolerance(solver, 1e-8, 1e-8);
+    set_max_step(solver, 5000);
     prepare_solver(solver);
-    set_system_data(solver, args);
-    result = integrate(solver, t, m);
+    for (i = 0; i < reps; i++) 
+    {
+        set_rand_args(args);
+        /*printf("args[0] = %.3f\n", args[0]);*/
+        /*printf("args[1] = %.3f\n", args[1]);*/
+        /*printf("args[2] = %.3f\n", args[2]);*/
+        /*printf("args[3] = %.3f\n", args[3]);*/
+        /*printf("args[4] = %.3f\n", args[4]);*/
+        /*printf("args[5] = %.3f\n", args[5]);*/
+        set_system_data(solver, args);
+        result = integrate(solver, t, m);
+        reset_solver(solver, t0, y0);
+        if (result != NULL) 
+        {
+            for (j = 0; j < m; j++)
+                free(result[j]);
+            free(result);
 
+        }
+    }
     delete_solver(solver);
-    for (i = 0; i < m; i++)
-        free(result[i]);
-    free(result);
     free(t);
     free(y0);
-    /*free(args);*/
+    free(args);
     return 0;
 }

@@ -1,4 +1,4 @@
-CFLAGS = -g -Wall -O2 -ansi -pedantic -Wno-unused-result
+CFLAGS = -g -Wall -O0 -ansi -pedantic -Wno-unused-result
 CC = gcc
 LDFLAGS = -I/usr/local/include  -L/usr/local/lib -lsundials_cvode \
 	-lsundials_nvecserial -lm /usr/lib/x86_64-linux-gnu/librt.so \
