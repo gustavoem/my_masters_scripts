@@ -1,0 +1,3 @@
+Integrating 100 times, we got average time of 27.247
+Integrating 200 times, we got average time of 58.998
+Integrating 400 times, we got average time of 136.303
