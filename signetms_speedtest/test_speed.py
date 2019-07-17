@@ -25,6 +25,10 @@ def run_sampler (temp, ode, experiments, theta_priors, iterations):
 def get_exec_time (odes, experiments, theta_priors, n_iterations, \
         nof_process):
     start_time = time.time ()
+    # initialize ODEs function and jacobian
+    odes.evaluate_on ([experiments[0].times[0]])
+    odes.get_system_jacobian ()
+
     temperatures = PopulationalMCMC.sample_scheduled_betas (20)
     sample_runner = lambda temp : run_sampler (temp, odes, \
             experiments, theta_priors, n_iterations)
