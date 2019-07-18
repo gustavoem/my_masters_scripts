@@ -1,0 +1,4 @@
+# of integrations   string eval    lambidified system (no jacobian provided)    lambidified system and jacobian    C code
+100                 31.191         17.461                                       6.005                              5.362    
+200                 63.282         34.532                                       11.853                             10.567   
+400                 125.647        68.845                                       24.915                             20.372   

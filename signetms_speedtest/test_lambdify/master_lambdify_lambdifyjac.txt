@@ -1,0 +1,4 @@
+# of integrations   string eval     lambidified system (no jacobian provided)   lambidified system and jacobian
+100                 27.247          18.165                                      7.164           
+200                 58.998          35.927                                      13.595          
+400                 136.303         70.757                                      26.429 
