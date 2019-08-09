@@ -1,0 +1,29 @@
+[
+    {
+        "name": "reaction_0",
+        "reactants": ["RAF"],
+        "products": ["RAF_P"],
+        "modifiers": ["ras_gtp"],
+        "parameters": [
+            {
+                "name": "kcat",
+                "prior": {
+                    "type": "Gamma",
+                    "shape": 2,
+                    "scale": 1
+                },
+                "value": ".25"
+            },
+            {
+                "name": "Km",
+                "prior": {
+                    "type": "Gamma",
+                    "shape": 2,
+                    "scale": 4
+                },
+                "value": 8
+            }
+        ],
+        "formula": "kcat * ras_gtp * RAF / (Km + RAF)"
+    }   
+]
