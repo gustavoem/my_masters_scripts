@@ -1,0 +1,4 @@
+Using 24  we got average time of 11.326
+Using 32  we got average time of 9.960
+Using 64  we got average time of 9.743
+Using 128  we got average time of 10.610
