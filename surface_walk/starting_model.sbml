@@ -50,7 +50,7 @@
           <!--</listOfParameters>-->
         <!--</kineticLaw>-->
       <!--</reaction>-->
-      <reaction id="reaction_11" name="Raf activation by Ras" reversible="false" fast="false">
+      <reaction id="SR1" name="Raf activation by Ras" reversible="false" fast="false">
         <listOfReactants>
           <speciesReference species="RAF"/>
         </listOfReactants>
@@ -83,7 +83,7 @@
           </listOfParameters>
         </kineticLaw>
       </reaction>
-      <reaction id="J2" name="MEK -> MEK_PP" reversible="false" fast="false">
+      <reaction id="SR2" name="MEK -> MEK_PP" reversible="false" fast="false">
         <listOfReactants>
           <speciesReference species="MEK"/>
         </listOfReactants>
@@ -116,7 +116,7 @@
           </listOfParameters>
         </kineticLaw>
       </reaction>
-      <reaction id="J4" name="MEK_PP -> MEK" reversible="false" fast="false">
+      <reaction id="SR3" name="MEK_PP -> MEK" reversible="false" fast="false">
         <listOfReactants>
           <speciesReference species="MEK_PP"/>
         </listOfReactants>
@@ -145,7 +145,7 @@
           </listOfParameters>
         </kineticLaw>
       </reaction>
-      <reaction id="J6" name="ERK -> ERKPP" reversible="false" fast="false">
+      <reaction id="SR4" name="ERK -> ERKPP" reversible="false" fast="false">
         <listOfReactants>
           <speciesReference species="ERK"/>
         </listOfReactants>
@@ -178,7 +178,7 @@
           </listOfParameters>
         </kineticLaw>
       </reaction>
-      <reaction id="J8" name="ERK_PP -> ERK" reversible="false" fast="false">
+      <reaction id="SR5" name="ERK_PP -> ERK" reversible="false" fast="false">
         <listOfReactants>
           <speciesReference species="ERK_PP"/>
         </listOfReactants>

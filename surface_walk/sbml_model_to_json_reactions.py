@@ -42,18 +42,21 @@ def print_reactions_json (reactions):
         reac_json["reactants"] = reac.reactants
         reac_json["products"] = reac.products
         reac_json["modifiers"] = reac.modifiers
+        formula = reac.formula
         params_json = []
         for param in reac.parameters:
             param_json = {}
-            param_json["name"] = param.id_name
+            param_full_name = '_'.join ([param.id_name, reac.name])
+            param_json["name"] = param_full_name
             prior_json = {}
             prior_json["type"] = param.type
             prior_json["shape"] = param.shape
             prior_json["scale"] = param.scale
             param_json["prior"] = prior_json
             params_json.append (param_json)
+            formula = formula.replace (param.id_name, param_full_name)
         reac_json["parameters"] = params_json
-        reac_json["formula"] = reac.formula
+        reac_json["formula"] = formula
         json_obj.append (reac_json)
     f = open ("model_reactions.json", 'w')
     json.dump (json_obj, f, indent=4, ensure_ascii=False)
@@ -64,6 +67,7 @@ def print_reactions_json (reactions):
 # Load sbml file
 reader = libsbml.SBMLReader ()
 sbmldoc = reader.readSBML (model_file)
+sbmldoc.printErrors ()
 
 # Convert function definitions
 converter = libsbml.SBMLFunctionDefinitionConverter ()
