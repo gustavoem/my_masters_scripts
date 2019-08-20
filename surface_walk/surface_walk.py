@@ -77,7 +77,7 @@ def all_species_modify_measure (V, A, measure):
     for v in range (n):
         for v_adj in A[v]:
             A_inv[v_adj].append (v)
-
+    
     reaches = [False] * n
     to_be_visited = []
     for i in range (n):
@@ -98,20 +98,43 @@ def all_species_modify_measure (V, A, measure):
     return True
         
 
-def disconnects_network (model, reaction, experiment_set):
+def disconnects_network (model, reaction_id, experiment_set):
     """ Verifies if, when removing a reaction we disconnect the model.
         By "disconnect" we mean a state in which changing the input
         to the network will not change the output (species present on 
         the measurement expression).
     """
     all_reactions = model.get_all_reactions ()
+    measure = experiment_set[0].measure_expression
+    for i in range (len (all_reactions)):
+        if all_reactions[i].id == reaction_id:
+            all_reactions.pop (i)
+            break
     vertice, arcs = build_interference_graph (all_reactions)
-    print (all_species_modify_measure (vertice, arcs, "ERK_PP"))
-    
-    model.remove_reaction ("SR2")
+    return not all_species_modify_measure (vertice, arcs, measure)
+
+
+def wont_change_measures (model, reaction_json, experiment_set):
+    """ Verifies if, when adding a new reaction, the measurements of
+        the system won't change. 
+    """
     all_reactions = model.get_all_reactions ()
     vertice, arcs = build_interference_graph (all_reactions)
-    print (all_species_modify_measure (vertice, arcs, "ERK_PP"))
+    measure = experiment_set[0].measure_expression
+    if not all_species_modify_measure (vertice, arcs, measure):
+        raise (ValueError, "The model being evaluated have species" + \
+                " that do not have a path of interactions with any" + \
+                " of the species present on measurements.")
+        return False
+    else:
+        modified_by_reaction = reaction_json["reactants"] + \
+                reaction_json["products"]
+        modifies_measure = [s in vertice for s in modified_by_reaction]
+        if any (modifies_measure):
+            return False
+        else:
+            return True
+
 
 
 parser = argparse.ArgumentParser ()
@@ -137,5 +160,9 @@ experiments = ExperimentSet (filename=experiments_file)
 current_model = starting_model.get_copy ()
 current_subset = starting_subset.copy ()
 
-
-disconnects_network (current_model, None, None)
+print (wont_change_measures (current_model, reactions_json[5], experiments))
+print (wont_change_measures (current_model, reactions_json[6], experiments))
+print (wont_change_measures (current_model, reactions_json[7], experiments))
+print (wont_change_measures (current_model, reactions_json[9], experiments))
+#print (disconnects_network (current_model, "SR2", experiments))
+#print (disconnects_network (current_model, "SR3", experiments))
