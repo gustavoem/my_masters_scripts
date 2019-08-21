@@ -1,10 +1,15 @@
 import sys
 sys.path.insert (0, '/home/gustavo/cs/SigNetMS')
 from model.SBML import SBML
+from model.RandomParameter import RandomParameter
+from model.RandomParameterList import RandomParameterList
+from model.PriorsWriter import write_priors_file
 from experiment.ExperimentSet import ExperimentSet
-
+from distributions.Gamma import Gamma
+import os
 import json
 import argparse
+import random
 
 
 def model_has_reaction (model, reac):
@@ -20,8 +25,7 @@ def define_starting_subset (model, reactions):
     """ Determine the reactions that are present in model. """
     is_present_array = [0] * len (reactions)
     for i in range (len (reactions)):
-        is_present_array[i] = \
-                int (model_has_reaction (model, reactions[i]))
+        is_present_array[i] = model_has_reaction (model, reactions[i])
     return is_present_array
 
 
@@ -72,15 +76,15 @@ def build_interference_graph (reaction_list):
 def all_species_modify_measure (V, A, measure):
     """ Decides if for any vertex in V, there is a path that connects 
         this vertex to a vertex that directly affects measure. """
-    n = len (V)
-    A_inv = [[] for _ in range (n)]
-    for v in range (n):
+    nv = len (V)
+    A_inv = [[] for _ in range (nv)]
+    for v in range (nv):
         for v_adj in A[v]:
             A_inv[v_adj].append (v)
     
-    reaches = [False] * n
+    reaches = [False] * nv
     to_be_visited = []
-    for i in range (n):
+    for i in range (nv):
         if V[i] in measure:
             reaches[i] = True
             to_be_visited.append (i)
@@ -92,7 +96,7 @@ def all_species_modify_measure (V, A, measure):
                 reaches[adj] = True
                 to_be_visited.append (adj)
 
-    for i in range (n):
+    for i in range (nv):
         if not reaches[i]:
             return False
     return True
@@ -136,6 +140,34 @@ def wont_change_measures (model, reaction_json, experiment_set):
             return True
 
 
+def create_subset_dir (subset):
+    """ Creates the subset that will store the input files of a model. 
+    """
+    subset_str = 'subset_' + ''.join ([str (int (x)) for x in subset])
+    os.mkdir (subset_str)
+    return subset_str
+
+
+def define_priors (subset, reaction_json, subset_directory):
+    """ Creates a prior file for a subset of reactions and places it
+        inside the subset directory. """
+    n = len (reaction_json)
+    subset_reacts = [reaction_json[i] for i in range (n) if subset[i]]
+    theta = RandomParameterList ()
+    for reac in subset_reacts:
+        params = reac["parameters"]
+        for param in params:
+            name = param["name"]
+            print (param)
+            distribution = Gamma (param["prior"]["shape"], \
+                    param["prior"]["scale"])
+            p = RandomParameter (name, distribution)
+            theta.append (p)
+    sigma_dist = Gamma (2, .1)
+    sigma = RandomParameter ('Noise', sigma_dist)
+    theta.set_experimental_error (sigma) 
+    write_priors_file (subset_directory + '/model.priors', theta)
+
 
 parser = argparse.ArgumentParser ()
 parser.add_argument ("starting_model", help="An SBML file with the" \
@@ -160,9 +192,26 @@ experiments = ExperimentSet (filename=experiments_file)
 current_model = starting_model.get_copy ()
 current_subset = starting_subset.copy ()
 
-print (wont_change_measures (current_model, reactions_json[5], experiments))
-print (wont_change_measures (current_model, reactions_json[6], experiments))
-print (wont_change_measures (current_model, reactions_json[7], experiments))
-print (wont_change_measures (current_model, reactions_json[9], experiments))
-#print (disconnects_network (current_model, "SR2", experiments))
-#print (disconnects_network (current_model, "SR3", experiments))
+computed_subsets = []
+computed_cost = []
+
+# TODO: compute cost of first subset
+
+# First, let's go up
+n = len (reactions_json)
+while sum (current_subset) < n:
+    subset_dir = create_subset_dir (current_subset)
+    define_priors (current_subset, reactions_json, subset_dir)
+    candidates = [i for i in range (n) if current_subset[i]]
+    
+    chosen_reac = random.choice (candidates)
+    next_model = current_model.get_copy ()
+    next_subset = current_subset.copy ()
+    next_subset[chosen_reac] = True
+
+
+    current_subset = next_subset
+    current_model = next_model
+
+
+# Then we can go down
