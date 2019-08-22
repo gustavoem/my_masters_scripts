@@ -614,7 +614,7 @@
             "RAF"
         ],
         "modifiers": [
-            "EKR_PP"
+            "ERK_PP"
         ],
         "parameters": [
             {
@@ -634,7 +634,7 @@
                 }
             }
         ],
-        "formula": "kcat_R16 * EKR_PP * RAF_P / (Km_R16 + RAF_P)"
+        "formula": "kcat_R16 * ERK_PP * RAF_P / (Km_R16 + RAF_P)"
     },
     {
         "name": "R17",
@@ -645,7 +645,7 @@
             "MEK_PP"
         ],
         "modifiers": [
-            "EKR_PP"
+            "ERK_PP"
         ],
         "parameters": [
             {
@@ -665,7 +665,7 @@
                 }
             }
         ],
-        "formula": "kcat_R17 * EKR_PP * MEK / (Km_R17 + MEK)"
+        "formula": "kcat_R17 * ERK_PP * MEK / (Km_R17 + MEK)"
     },
     {
         "name": "R18",
