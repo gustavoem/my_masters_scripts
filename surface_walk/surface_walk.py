@@ -1,11 +1,16 @@
+from pathlib import Path
+SIGNET_MS_PATH =  '/home/gustavo/cs/SigNetMS'
+CURRENT_PATH = str (Path ().absolute ())
+
 import sys
-sys.path.insert (0, '/home/gustavo/cs/SigNetMS')
+sys.path.insert (0, SIGNET_MS_PATH)
 from model.SBML import SBML
 from model.RandomParameter import RandomParameter
 from model.RandomParameterList import RandomParameterList
 from model.PriorsWriter import write_priors_file
 from experiment.ExperimentSet import ExperimentSet
 from distributions.Gamma import Gamma
+from SigNetMS import perform_marginal_likelihood
 import os
 import json
 import argparse
@@ -169,6 +174,41 @@ def define_priors (subset, reaction_json, subset_directory):
     write_priors_file (subset_directory + '/model.priors', theta)
 
 
+def save_model_file (model, subset_directory):
+    model.set_name (subset_directory.replace ("subset", "model"))
+    model.write_sbmldoc_to_file (subset_directory + '/model.sbml')
+
+
+def add_reaction_to_model (model, reaction_json):
+    """ Adds a reaction (in json format) to an SBML model."""
+    id_name = reactions_json["name"]
+    reactants = reactions_json["reactants"]
+    products = reactions_json["products"]
+    modifiers = reactions_json["modifiers"]
+    parameters = []
+    for p_json in reactions_json["parameters"]:
+        p = {}
+        p["name"] = p_json["name"]
+        p["value"] = 1
+        parameters.append (p)
+    formula = reactions_json["formula"]
+    reaction = Reaction (id_name, reactants, products, modifiers, \
+            parameters, formula)
+    model.add_reaction (reaction)
+
+def calculate_score (subset_directory):
+    """ Given the subset of a model, calculates the score of this model. 
+    """
+    subset_dir_path = CURRENT_PATH + '/' + subset_directory
+    model_file = subset_dir_path + '/model.sbml'
+    priors_file = subset_dir_path + '/model.priors'
+    exp_file = CURRENT_PATH + '/perturbations.data'
+    score = perform_marginal_likelihood (model_file, priors_file, \
+            exp_file, 250, 100, 10, 20, n_process=4)
+    return score
+
+
+
 parser = argparse.ArgumentParser ()
 parser.add_argument ("starting_model", help="An SBML file with the" \
         + " starting node")
@@ -193,25 +233,38 @@ current_model = starting_model.get_copy ()
 current_subset = starting_subset.copy ()
 
 computed_subsets = []
-computed_cost = []
+computed_score = []
 
-# TODO: compute cost of first subset
 
 # First, let's go up
 n = len (reactions_json)
 while sum (current_subset) < n:
+    print ("\n-------------\nNew iteration")
+    print ("Current subset: ", [int (b) for b in current_subset])
     subset_dir = create_subset_dir (current_subset)
     define_priors (current_subset, reactions_json, subset_dir)
-    candidates = [i for i in range (n) if current_subset[i]]
+    save_model_file (current_model, subset_dir)
+    print ("Created and saved priors and model")
     
+    score = calculate_score (subset_dir)
+    computed_subsets.append (''.join (str (b) for b in current_subset))
+    computed_score.append (score)
+
+    candidates = [i for i in range (n) if not current_subset[i]]
+    print ("Candidate reactions to be added (indexes): ", candidates) 
     chosen_reac = random.choice (candidates)
-    next_model = current_model.get_copy ()
-    next_subset = current_subset.copy ()
-    next_subset[chosen_reac] = True
+    print ("Chose to add ", chosen_reac)
 
+    while wont_change_measures (current_model, \
+            reactions_json[chosen_reac], experiments):
+        print ("Won't change measures, so we'll add another reaction.")
+        add_reaction_to_model (current_model, \
+                reactions_json[chosen_reac])
+        current_subset[chosen_reac] = True
 
-    current_subset = next_subset
-    current_model = next_model
-
-
-# Then we can go down
+        candidates = [i for i in range (n) if current_subset[i]]
+        print ("\tCandidate reactions to be added (indexes): ", \
+                candidates) 
+        chosen_reac = random.choice (candidates)
+        print ("\tChose to add ", chosen_reac)
+    print ("The last proposed reaction will change measures!")
