@@ -77,51 +77,17 @@ def build_interference_graph (reaction_list):
                 adjacent_species_idx = V.index (adjacent_species)
                 A[species_idx].append (adjacent_species_idx)
     return V, A
-
-
-def all_species_modify_measure (V, A, measure):
-    """ Decides if for any vertex in V, there is a path that connects 
-        this vertex to a vertex that directly affects measure. """
-    nv = len (V)
-    A_inv = [[] for _ in range (nv)]
-    for v in range (nv):
-        for v_adj in A[v]:
-            A_inv[v_adj].append (v)
-    
-    reaches = [False] * nv
-    to_be_visited = []
-    for i in range (nv):
-        if V[i] in measure:
-            reaches[i] = True
-            to_be_visited.append (i)
-
-    while to_be_visited:
-        v = to_be_visited.pop (0)
-        for adj in A_inv[v]:
-            if not reaches[adj]:
-                reaches[adj] = True
-                to_be_visited.append (adj)
-
-    for i in range (nv):
-        if not reaches[i]:
-            return False
-    return True
         
 
 def disconnects_network (model, reaction_id, experiment_set):
     """ Verifies if, when removing a reaction we disconnect the model.
-        By "disconnect" we mean a state in which changing the input
-        to the network will not change the output (species present on 
+        By "disconnect" we mean a state in which changing the input 
+        (species that start with concentration greater than 0)
+        of the network will not change the output (species present on 
         the measurement expression).
     """
-    all_reactions = model.get_all_reactions ()
-    measure = experiment_set[0].measure_expression
-    for i in range (len (all_reactions)):
-        if all_reactions[i].id == reaction_id:
-            all_reactions.pop (i)
-            break
-    vertice, arcs = build_interference_graph (all_reactions)
-    return not all_species_modify_measure (vertice, arcs, measure)
+    # TODO: I'm not sure if this is going to be used
+    return False
 
 
 def get_vertice_that_reach (V, A, target_set):
@@ -219,6 +185,7 @@ def add_reaction_to_model (model, reaction_json):
             parameters, formula)
     model.add_reaction (reaction)
 
+
 def calculate_score (subset_directory):
     """ Given the subset of a model, calculates the score of this model. 
     """
@@ -229,7 +196,6 @@ def calculate_score (subset_directory):
     score = perform_marginal_likelihood (model_file, priors_file, \
             exp_file, 300, 100, 10, 20, n_process=4)
     return score
-
 
 
 parser = argparse.ArgumentParser ()
@@ -259,13 +225,9 @@ computed_subsets = []
 computed_score = []
 
 
-print (changes_measures (starting_model, reactions_json[5], experiments))
-print (changes_measures (starting_model, reactions_json[6], experiments))
-print (changes_measures (starting_model, reactions_json[7], experiments))
-
 # First, let's go up
 n = len (reactions_json)
-while sum (current_subset) <= -1: #n:
+while sum (current_subset) <= n:
     print ("\n-------------\nNew iteration")
     print ("Current subset: ", [int (b) for b in current_subset])
     subset_dir = create_subset_dir (current_subset)
@@ -284,7 +246,7 @@ while sum (current_subset) <= -1: #n:
     chosen_reac = random.choice (candidates)
     print ("Chose to add ", chosen_reac)
 
-    while wont_change_measures (current_model, \
+    while not changes_measures (current_model, \
             reactions_json[chosen_reac], experiments):
         print ("Won't change measures, so we'll add another reaction.")
         add_reaction_to_model (current_model, \
