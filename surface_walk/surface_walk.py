@@ -128,7 +128,12 @@ def changes_measures (model, reaction_json, experiment_set):
     measure = experiment_set[0].measure_expression
     measure_species = [v for v in vertice if v in measure]
     reaching_v = get_vertice_that_reach (vertice, arcs, measure_species)
-    print ((reaction_json["reactants"] + reaction_json["products"]))
+    print ("Verifying the reaction: ", end='')
+    print (' + '.join (reaction_json["reactants"]), end='')
+    print ('---', end='')
+    print (''.join (reaction_json["modifiers"]), end='')
+    print ('-->', end='')
+    print (' + '.join (reaction_json["products"]))
     for s in (reaction_json["reactants"] + reaction_json["products"]):
         if s in reaching_v:
             return True
@@ -236,7 +241,8 @@ while sum (current_subset) <= n:
     print ("Created and saved priors and model")
     
     score = calculate_score (subset_dir)
-    computed_subsets.append (''.join (str (b) for b in current_subset))
+    computed_subsets.append (''.join (str (int (b)) \
+            for b in current_subset))
     computed_score.append (score)
 
     candidates = [i for i in range (n) if not current_subset[i]]
@@ -253,7 +259,7 @@ while sum (current_subset) <= n:
                 reactions_json[chosen_reac])
         current_subset[chosen_reac] = True
         score = computed_score[-1]
-        computed_subsets.append (''.join (str (b) \
+        computed_subsets.append (''.join (str (int (b)) \
                 for b in current_subset))
         computed_score.append (score)
 
@@ -271,3 +277,7 @@ while sum (current_subset) <= n:
         add_reaction_to_model (current_model, \
                 reactions_json[chosen_reac])
         current_subset[chosen_reac] = True
+
+results = [r for r in zip (computed_subsets, computed_score)]
+for r in results:
+    print (r)
