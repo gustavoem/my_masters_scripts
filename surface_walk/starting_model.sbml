@@ -12,14 +12,14 @@
       <compartment id="uVol" size="1" constant="true"/>
     </listOfCompartments>
     <listOfSpecies>
-      <species id="RAF" name="Mos" compartment="uVol" initialConcentration="81.94" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
-      <species id="RAF_P" name="Mos-P" compartment="uVol" initialConcentration="18.06" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
-      <species id="MEK" name="Mek1" compartment="uVol" initialConcentration="272.22" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
-      <species id="MEK_PP" name="Mek1-PP" compartment="uVol" initialConcentration="7.85" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
-      <species id="ERK" name="Erk2" compartment="uVol" initialConcentration="288.5" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="RAF" name="RAF" compartment="uVol" initialConcentration="81.94" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="RAF_P" name="RAF_P" compartment="uVol" initialConcentration="18.06" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="MEK" name="MEK" compartment="uVol" initialConcentration="272.22" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="MEK_PP" name="MEK_PP" compartment="uVol" initialConcentration="7.85" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="ERK" name="ERK" compartment="uVol" initialConcentration="288.5" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
       <species id="ERK_P" name="ERK_P" compartment="uVol" initialConcentration="0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
-      <species id="ERK_PP" name="Erk2-PP" compartment="uVol" initialConcentration="2.93" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
-      <species id="ras_gtp" name="Ras-GTP" compartment="uVol" initialConcentration="333" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="ERK_PP" name="ERK_PP" compartment="uVol" initialConcentration="2.93" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="ras_gtp" name="ras_gtp" compartment="uVol" initialConcentration="333" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
     </listOfSpecies>
     <listOfReactions>
       <!--<reaction id="J1" name="RAF_P inactivation" reversible="false" fast="false">-->

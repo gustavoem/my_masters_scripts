@@ -8,6 +8,7 @@ from model.SBML import SBML
 from model.RandomParameter import RandomParameter
 from model.RandomParameterList import RandomParameterList
 from model.PriorsWriter import write_priors_file
+from model.Reaction import Reaction
 from experiment.ExperimentSet import ExperimentSet
 from distributions.Gamma import Gamma
 from SigNetMS import perform_marginal_likelihood
@@ -123,26 +124,49 @@ def disconnects_network (model, reaction_id, experiment_set):
     return not all_species_modify_measure (vertice, arcs, measure)
 
 
-def wont_change_measures (model, reaction_json, experiment_set):
+def get_vertice_that_reach (V, A, target_set):
+    """ Returns a list of all vertice in V that will reach vertice from
+        the set target_set. """
+    inv_A = [[] for v in V]
+    nV = len (V)
+    for v in range (nV):
+        for adj in A[v]:
+            inv_A[adj].append (v)
+
+    reaches = []
+    search_queue = []
+    visited = [False for v in V]
+    for v in range (nV):
+        if V[v] in target_set:
+            search_queue.append (v)
+            visited[v] = True
+            reaches.append (V[v])
+
+    while search_queue:
+        current_node = search_queue.pop (0)
+        for adj in inv_A[current_node]:
+            if visited[adj]:
+                continue
+            reaches.append (V[adj])
+            visited[adj] = True
+            search_queue.append (adj)
+    return reaches
+
+
+def changes_measures (model, reaction_json, experiment_set):
     """ Verifies if, when adding a new reaction, the measurements of
         the system won't change. 
     """
     all_reactions = model.get_all_reactions ()
     vertice, arcs = build_interference_graph (all_reactions)
     measure = experiment_set[0].measure_expression
-    if not all_species_modify_measure (vertice, arcs, measure):
-        raise (ValueError, "The model being evaluated have species" + \
-                " that do not have a path of interactions with any" + \
-                " of the species present on measurements.")
-        return False
-    else:
-        modified_by_reaction = reaction_json["reactants"] + \
-                reaction_json["products"]
-        modifies_measure = [s in vertice for s in modified_by_reaction]
-        if any (modifies_measure):
-            return False
-        else:
+    measure_species = [v for v in vertice if v in measure]
+    reaching_v = get_vertice_that_reach (vertice, arcs, measure_species)
+    print ((reaction_json["reactants"] + reaction_json["products"]))
+    for s in (reaction_json["reactants"] + reaction_json["products"]):
+        if s in reaching_v:
             return True
+    return False
 
 
 def create_subset_dir (subset):
@@ -163,7 +187,6 @@ def define_priors (subset, reaction_json, subset_directory):
         params = reac["parameters"]
         for param in params:
             name = param["name"]
-            print (param)
             distribution = Gamma (param["prior"]["shape"], \
                     param["prior"]["scale"])
             p = RandomParameter (name, distribution)
@@ -181,17 +204,17 @@ def save_model_file (model, subset_directory):
 
 def add_reaction_to_model (model, reaction_json):
     """ Adds a reaction (in json format) to an SBML model."""
-    id_name = reactions_json["name"]
-    reactants = reactions_json["reactants"]
-    products = reactions_json["products"]
-    modifiers = reactions_json["modifiers"]
+    id_name = reaction_json["name"]
+    reactants = reaction_json["reactants"]
+    products = reaction_json["products"]
+    modifiers = reaction_json["modifiers"]
     parameters = []
-    for p_json in reactions_json["parameters"]:
+    for p_json in reaction_json["parameters"]:
         p = {}
         p["name"] = p_json["name"]
         p["value"] = 1
         parameters.append (p)
-    formula = reactions_json["formula"]
+    formula = reaction_json["formula"]
     reaction = Reaction (id_name, reactants, products, modifiers, \
             parameters, formula)
     model.add_reaction (reaction)
@@ -204,7 +227,7 @@ def calculate_score (subset_directory):
     priors_file = subset_dir_path + '/model.priors'
     exp_file = CURRENT_PATH + '/perturbations.data'
     score = perform_marginal_likelihood (model_file, priors_file, \
-            exp_file, 250, 100, 10, 20, n_process=4)
+            exp_file, 300, 100, 10, 20, n_process=4)
     return score
 
 
@@ -236,9 +259,13 @@ computed_subsets = []
 computed_score = []
 
 
+print (changes_measures (starting_model, reactions_json[5], experiments))
+print (changes_measures (starting_model, reactions_json[6], experiments))
+print (changes_measures (starting_model, reactions_json[7], experiments))
+
 # First, let's go up
 n = len (reactions_json)
-while sum (current_subset) < n:
+while sum (current_subset) <= -1: #n:
     print ("\n-------------\nNew iteration")
     print ("Current subset: ", [int (b) for b in current_subset])
     subset_dir = create_subset_dir (current_subset)
@@ -251,6 +278,8 @@ while sum (current_subset) < n:
     computed_score.append (score)
 
     candidates = [i for i in range (n) if not current_subset[i]]
+    if candidates == []:
+        break
     print ("Candidate reactions to be added (indexes): ", candidates) 
     chosen_reac = random.choice (candidates)
     print ("Chose to add ", chosen_reac)
@@ -261,10 +290,22 @@ while sum (current_subset) < n:
         add_reaction_to_model (current_model, \
                 reactions_json[chosen_reac])
         current_subset[chosen_reac] = True
+        score = computed_score[-1]
+        computed_subsets.append (''.join (str (b) \
+                for b in current_subset))
+        computed_score.append (score)
 
-        candidates = [i for i in range (n) if current_subset[i]]
+        candidates = [i for i in range (n) if not current_subset[i]]
+        if candidates == []:
+            break
         print ("\tCandidate reactions to be added (indexes): ", \
                 candidates) 
         chosen_reac = random.choice (candidates)
         print ("\tChose to add ", chosen_reac)
     print ("The last proposed reaction will change measures!")
+
+    if candidates != []:
+        print ("Adding last reaction: ", chosen_reac)
+        add_reaction_to_model (current_model, \
+                reactions_json[chosen_reac])
+        current_subset[chosen_reac] = True
