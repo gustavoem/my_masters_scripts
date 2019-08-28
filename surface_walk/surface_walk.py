@@ -1,5 +1,5 @@
 from pathlib import Path
-SIGNET_MS_PATH =  '/home/gustavo/cs/SigNetMS'
+SIGNET_MS_PATH =  '/project/msreis/modelSelection/project/SigNetMS'
 CURRENT_PATH = str (Path ().absolute ())
 
 import sys
@@ -198,8 +198,16 @@ def calculate_score (subset_directory):
     model_file = subset_dir_path + '/model.sbml'
     priors_file = subset_dir_path + '/model.priors'
     exp_file = CURRENT_PATH + '/perturbations.data'
-    score = perform_marginal_likelihood (model_file, priors_file, \
-            exp_file, 300, 100, 10, 20, n_process=4)
+    try:
+        score = perform_marginal_likelihood (model_file, priors_file, \
+                exp_file, 50, 100, 10, 20, n_process=4)
+    except ValueError:
+        print ("There was no convergence of parameters in burn-in" \
+                + " sampling.")
+        score = None
+    except:
+        print ("Something else happened")
+        score = None
     return score
 
 
@@ -210,11 +218,14 @@ parser.add_argument ("interactions_file", help="A JSON file with" \
         + " interactions to be added/removed to the starting model.")
 parser.add_argument ("experiments_file", help="An xml file with the" \
         + "experiment performed.")
+parser.add_argument ("--seed", type=int, nargs='?', default=0, help="Seed for random number" \
+        + "generator.")
 args = parser.parse_args ()
 
 starting_model_file = args.starting_model
 interactions_file = args.interactions_file
 experiments_file = args.experiments_file
+seed =  args.seed
 
 reactions_json = read_reactions_database (interactions_file)
 starting_model = SBML ()
@@ -229,6 +240,8 @@ current_subset = starting_subset.copy ()
 computed_subsets = []
 computed_score = []
 
+# defines a seed
+random.seed (seed)
 
 # First, let's go up
 n = len (reactions_json)
