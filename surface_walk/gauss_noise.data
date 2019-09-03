@@ -28,7 +28,7 @@
     <condition/>
     <interpretation>
       <time col="0"/>
-      <readout expression="MAPK_PP + MAPK_P" col="1"/>
+      <readout expression="ERK_PP + ERK_P" col="1"/>
     </interpretation>
   </Experiment>
   <Experiment>
@@ -59,7 +59,7 @@
     <condition/>
     <interpretation>
       <time col="0"/>
-      <readout expression="MAPK_PP + MAPK_P" col="1"/>
+      <readout expression="ERK_PP + ERK_P" col="1"/>
     </interpretation>
   </Experiment>
   <Experiment>
@@ -90,7 +90,7 @@
     <condition/>
     <interpretation>
       <time col="0"/>
-      <readout expression="MAPK_PP + MAPK_P" col="1"/>
+      <readout expression="ERK_PP + ERK_P" col="1"/>
     </interpretation>
   </Experiment>
 </ExperimentSet>
