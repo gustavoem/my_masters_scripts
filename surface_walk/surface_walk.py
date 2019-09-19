@@ -191,22 +191,25 @@ def add_reaction_to_model (model, reaction_json):
     model.add_reaction (reaction)
 
 
-def calculate_score (subset_directory):
+def calculate_score (subset_directory, exp_file):
     """ Given the subset of a model, calculates the score of this model. 
     """
     subset_dir_path = CURRENT_PATH + '/' + subset_directory
     model_file = subset_dir_path + '/model.sbml'
     priors_file = subset_dir_path + '/model.priors'
-    exp_file = CURRENT_PATH + '/perturbations.data'
+    sample_file = subset_dir_path + '/sample.txt'
+    exp_file = CURRENT_PATH + '/' + exp_file
     try:
         score = perform_marginal_likelihood (model_file, priors_file, \
-                exp_file, 50, 100, 10, 20, n_process=4)
+                exp_file, 15000, 1000, 1000, 2000, n_process=15,\
+                sample_output_file=sample_file)
     except ValueError:
         print ("There was no convergence of parameters in burn-in" \
                 + " sampling.")
         score = None
-    except:
+    except Exception as e:
         print ("Something else happened")
+        print (e)
         score = None
     return score
 
@@ -253,7 +256,7 @@ while sum (current_subset) <= n:
     save_model_file (current_model, subset_dir)
     print ("Created and saved priors and model")
     
-    score = calculate_score (subset_dir)
+    score = calculate_score (subset_dir, experiments_file)
     computed_subsets.append (''.join (str (int (b)) \
             for b in current_subset))
     computed_score.append (score)
