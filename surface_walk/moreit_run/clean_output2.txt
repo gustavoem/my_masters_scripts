@@ -1,0 +1,311 @@
+
+-------------
+New iteration
+Current subset:  [1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+Created and saved priors and model
+Performing marginal likelihood calculations of model: /mnt/project1/msreis/modelSelection/users/gestrela/my_masters_scripts/surface_walk/subset_11111000000000000000000/model.sbml
+Initialized ODEs
+Phase 1 and 2 starts.
+Phase 3 starts.
+Sampling ended.
+Calculated log marginal likelihood: -3148.2369967428385
+log_l = -3148.2369967428385
+Candidate reactions to be added (indexes):  [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22]
+Chose to add  8
+Verifying the reaction: RAF---ERK_PP-->RAF_P
+The last proposed reaction will change measures!
+Adding last reaction:  8
+
+-------------
+New iteration
+Current subset:  [1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+Created and saved priors and model
+Performing marginal likelihood calculations of model: /mnt/project1/msreis/modelSelection/users/gestrela/my_masters_scripts/surface_walk/subset_11111000100000000000000/model.sbml
+Initialized ODEs
+Phase 1 and 2 starts.
+Phase 3 starts.
+Sampling ended.
+Calculated log marginal likelihood: -2965.532114885236
+log_l = -2965.532114885236
+Candidate reactions to be added (indexes):  [5, 6, 7, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22]
+Chose to add  15
+Verifying the reaction: ERK_PP----->ERK_P
+The last proposed reaction will change measures!
+Adding last reaction:  15
+
+-------------
+New iteration
+Current subset:  [1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0]
+Created and saved priors and model
+Performing marginal likelihood calculations of model: /mnt/project1/msreis/modelSelection/users/gestrela/my_masters_scripts/surface_walk/subset_11111000100000010000000/model.sbml
+Initialized ODEs
+Phase 1 and 2 starts.
+Phase 3 starts.
+Sampling ended.
+Calculated log marginal likelihood: -8066.568898368918
+log_l = -8066.568898368918
+Candidate reactions to be added (indexes):  [5, 6, 7, 9, 10, 11, 12, 13, 14, 16, 17, 18, 19, 20, 21, 22]
+Chose to add  10
+Verifying the reaction: MEK_P---RAF_P-->MEK_PP
+The last proposed reaction will change measures!
+Adding last reaction:  10
+
+-------------
+New iteration
+Current subset:  [1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0]
+Created and saved priors and model
+Performing marginal likelihood calculations of model: /mnt/project1/msreis/modelSelection/users/gestrela/my_masters_scripts/surface_walk/subset_11111000101000010000000/model.sbml
+Initialized ODEs
+Phase 1 and 2 starts.
+Phase 3 starts.
+Sampling ended.
+Calculated log marginal likelihood: -4033.943571049316
+log_l = -4033.943571049316
+Candidate reactions to be added (indexes):  [5, 6, 7, 9, 11, 12, 13, 14, 16, 17, 18, 19, 20, 21, 22]
+Chose to add  13
+Verifying the reaction: ERK---MEK_PP-->ERK_P
+The last proposed reaction will change measures!
+Adding last reaction:  13
+
+-------------
+New iteration
+Current subset:  [1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0]
+Created and saved priors and model
+Performing marginal likelihood calculations of model: /mnt/project1/msreis/modelSelection/users/gestrela/my_masters_scripts/surface_walk/subset_11111000101001010000000/model.sbml
+Initialized ODEs
+Phase 1 and 2 starts.
+Phase 3 starts.
+Sampling ended.
+Calculated log marginal likelihood: -52619.41928028771
+log_l = -52619.41928028771
+Candidate reactions to be added (indexes):  [5, 6, 7, 9, 11, 12, 14, 16, 17, 18, 19, 20, 21, 22]
+Chose to add  11
+Verifying the reaction: MEK_PP----->MEK_P
+The last proposed reaction will change measures!
+Adding last reaction:  11
+
+-------------
+New iteration
+Current subset:  [1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0]
+Created and saved priors and model
+Performing marginal likelihood calculations of model: /mnt/project1/msreis/modelSelection/users/gestrela/my_masters_scripts/surface_walk/subset_11111000101101010000000/model.sbml
+Initialized ODEs
+Phase 1 and 2 starts.
+Phase 3 starts.
+Sampling ended.
+Calculated log marginal likelihood: -42295.73642547657
+log_l = -42295.73642547657
+Candidate reactions to be added (indexes):  [5, 6, 7, 9, 12, 14, 16, 17, 18, 19, 20, 21, 22]
+Chose to add  14
+Verifying the reaction: ERK_P---MEK_PP-->ERK_PP
+The last proposed reaction will change measures!
+Adding last reaction:  14
+
+-------------
+New iteration
+Current subset:  [1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0]
+Created and saved priors and model
+Performing marginal likelihood calculations of model: /mnt/project1/msreis/modelSelection/users/gestrela/my_masters_scripts/surface_walk/subset_11111000101101110000000/model.sbml
+Initialized ODEs
+Phase 1 and 2 starts.
+Phase 3 starts.
+Sampling ended.
+Calculated log marginal likelihood: -94280.35145457927
+log_l = -94280.35145457927
+Candidate reactions to be added (indexes):  [5, 6, 7, 9, 12, 16, 17, 18, 19, 20, 21, 22]
+Chose to add  5
+Verifying the reaction: PKC---ras_gtp-->PKCP
+Won't change measures, so we'll add another reaction.
+	Candidate reactions to be added (indexes):  [6, 7, 9, 12, 16, 17, 18, 19, 20, 21, 22]
+	Chose to add  20
+Verifying the reaction: RAF_P---ERK_PP-->RAF
+The last proposed reaction will change measures!
+Adding last reaction:  20
+
+-------------
+New iteration
+Current subset:  [1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0]
+Created and saved priors and model
+Performing marginal likelihood calculations of model: /mnt/project1/msreis/modelSelection/users/gestrela/my_masters_scripts/surface_walk/subset_11111100101101110000100/model.sbml
+Initialized ODEs
+Phase 1 and 2 starts.
+Phase 3 starts.
+Sampling ended.
+Calculated log marginal likelihood: -114630.40474218591
+log_l = -114630.40474218591
+Candidate reactions to be added (indexes):  [6, 7, 9, 12, 16, 17, 18, 19, 21, 22]
+Chose to add  12
+Verifying the reaction: MEK_P----->MEK
+The last proposed reaction will change measures!
+Adding last reaction:  12
+
+-------------
+New iteration
+Current subset:  [1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0]
+Created and saved priors and model
+Performing marginal likelihood calculations of model: /mnt/project1/msreis/modelSelection/users/gestrela/my_masters_scripts/surface_walk/subset_11111100101111110000100/model.sbml
+Initialized ODEs
+Phase 1 and 2 starts.
+Phase 3 starts.
+Sampling ended.
+Calculated log marginal likelihood: -261244.9374037998
+log_l = -261244.9374037998
+Candidate reactions to be added (indexes):  [6, 7, 9, 16, 17, 18, 19, 21, 22]
+Chose to add  9
+Verifying the reaction: MEK---RAF_P-->MEK_P
+The last proposed reaction will change measures!
+Adding last reaction:  9
+
+-------------
+New iteration
+Current subset:  [1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0]
+Created and saved priors and model
+Performing marginal likelihood calculations of model: /mnt/project1/msreis/modelSelection/users/gestrela/my_masters_scripts/surface_walk/subset_11111100111111110000100/model.sbml
+Initialized ODEs
+Phase 1 and 2 starts.
+Phase 3 starts.
+Sampling ended.
+Calculated log marginal likelihood: -105978.01123969026
+log_l = -105978.01123969026
+Candidate reactions to be added (indexes):  [6, 7, 16, 17, 18, 19, 21, 22]
+Chose to add  21
+Verifying the reaction: MEK---ERK_PP-->MEK_PP
+The last proposed reaction will change measures!
+Adding last reaction:  21
+
+-------------
+New iteration
+Current subset:  [1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 0]
+Created and saved priors and model
+Performing marginal likelihood calculations of model: /mnt/project1/msreis/modelSelection/users/gestrela/my_masters_scripts/surface_walk/subset_11111100111111110000110/model.sbml
+Initialized ODEs
+Phase 1 and 2 starts.
+Phase 3 starts.
+Sampling ended.
+Calculated log marginal likelihood: -280850.22207470704
+log_l = -280850.22207470704
+Candidate reactions to be added (indexes):  [6, 7, 16, 17, 18, 19, 22]
+Chose to add  18
+Verifying the reaction: ERK_PP---ERK-->ERK_PP
+The last proposed reaction will change measures!
+Adding last reaction:  18
+
+-------------
+New iteration
+Current subset:  [1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 1, 1, 0]
+Created and saved priors and model
+Performing marginal likelihood calculations of model: /mnt/project1/msreis/modelSelection/users/gestrela/my_masters_scripts/surface_walk/subset_11111100111111110010110/model.sbml
+Initialized ODEs
+Phase 1 and 2 starts.
+Phase 3 starts.
+Sampling ended.
+Calculated log marginal likelihood: -624954.2594988217
+log_l = -624954.2594988217
+Candidate reactions to be added (indexes):  [6, 7, 16, 17, 19, 22]
+Chose to add  22
+Verifying the reaction: RAF_P----->RAF
+The last proposed reaction will change measures!
+Adding last reaction:  22
+
+-------------
+New iteration
+Current subset:  [1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 1, 1, 1]
+Created and saved priors and model
+Performing marginal likelihood calculations of model: /mnt/project1/msreis/modelSelection/users/gestrela/my_masters_scripts/surface_walk/subset_11111100111111110010111/model.sbml
+Initialized ODEs
+Phase 1 and 2 starts.
+Phase 3 starts.
+Sampling ended.
+Calculated log marginal likelihood: -238369.6243386485
+log_l = -238369.6243386485
+Candidate reactions to be added (indexes):  [6, 7, 16, 17, 19]
+Chose to add  19
+Verifying the reaction: ERK---ERK_PP-->ERK_PP
+The last proposed reaction will change measures!
+Adding last reaction:  19
+
+-------------
+New iteration
+Current subset:  [1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1]
+Created and saved priors and model
+Performing marginal likelihood calculations of model: /mnt/project1/msreis/modelSelection/users/gestrela/my_masters_scripts/surface_walk/subset_11111100111111110011111/model.sbml
+Initialized ODEs
+Phase 1 and 2 starts.
+Phase 3 starts.
+Sampling ended.
+Calculated log marginal likelihood: -437370.07334301464
+log_l = -437370.07334301464
+Candidate reactions to be added (indexes):  [6, 7, 16, 17]
+Chose to add  6
+Verifying the reaction: PKCP----->PKC
+Won't change measures, so we'll add another reaction.
+	Candidate reactions to be added (indexes):  [7, 16, 17]
+	Chose to add  17
+Verifying the reaction: MEK_PP---ERK_PP-->MEK
+The last proposed reaction will change measures!
+Adding last reaction:  17
+
+-------------
+New iteration
+Current subset:  [1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1]
+Created and saved priors and model
+Performing marginal likelihood calculations of model: /mnt/project1/msreis/modelSelection/users/gestrela/my_masters_scripts/surface_walk/subset_11111110111111110111111/model.sbml
+Initialized ODEs
+Phase 1 and 2 starts.
+Phase 3 starts.
+Sampling ended.
+Calculated log marginal likelihood: -661039.9088697928
+log_l = -661039.9088697928
+Candidate reactions to be added (indexes):  [7, 16]
+Chose to add  7
+Verifying the reaction: RAF---PKCP-->RAF_P
+The last proposed reaction will change measures!
+Adding last reaction:  7
+
+-------------
+New iteration
+Current subset:  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1]
+Created and saved priors and model
+Performing marginal likelihood calculations of model: /mnt/project1/msreis/modelSelection/users/gestrela/my_masters_scripts/surface_walk/subset_11111111111111110111111/model.sbml
+Initialized ODEs
+Phase 1 and 2 starts.
+Phase 3 starts.
+Sampling ended.
+Calculated log marginal likelihood: -593869.5110459016
+log_l = -593869.5110459016
+Candidate reactions to be added (indexes):  [16]
+Chose to add  16
+Verifying the reaction: ERK_P----->ERK
+The last proposed reaction will change measures!
+Adding last reaction:  16
+
+-------------
+New iteration
+Current subset:  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+Created and saved priors and model
+Performing marginal likelihood calculations of model: /mnt/project1/msreis/modelSelection/users/gestrela/my_masters_scripts/surface_walk/subset_11111111111111111111111/model.sbml
+Initialized ODEs
+Phase 1 and 2 starts.
+Phase 3 starts.
+Sampling ended.
+Calculated log marginal likelihood: -662333.1173569915
+log_l = -662333.1173569915
+('11111000000000000000000', -3148.2369967428385)
+('11111000100000000000000', -2965.532114885236)
+('11111000100000010000000', -8066.568898368918)
+('11111000101000010000000', -4033.943571049316)
+('11111000101001010000000', -52619.41928028771)
+('11111000101101010000000', -42295.73642547657)
+('11111000101101110000000', -94280.35145457927)
+('11111100101101110000000', -94280.35145457927)
+('11111100101101110000100', -114630.40474218591)
+('11111100101111110000100', -261244.9374037998)
+('11111100111111110000100', -105978.01123969026)
+('11111100111111110000110', -280850.22207470704)
+('11111100111111110010110', -624954.2594988217)
+('11111100111111110010111', -238369.6243386485)
+('11111100111111110011111', -437370.07334301464)
+('11111110111111110011111', -437370.07334301464)
+('11111110111111110111111', -661039.9088697928)
+('11111111111111110111111', -593869.5110459016)
+('11111111111111111111111', -662333.1173569915)
