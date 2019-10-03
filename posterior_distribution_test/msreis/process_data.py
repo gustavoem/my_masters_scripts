@@ -12,23 +12,31 @@ from model.PriorsReader import define_sbml_params_priors
 
 # Find the model directories
 subdirs = [subdir[0] for subdir in os.walk (CURRENT_PATH)]
-model_dirs = [subdir for subdir in subdirs if 'subset' in subdir]
+all_dirs = [subdir for subdir in subdirs if 'subset' in subdir]
+model_dirs = []
 
-subset_regex = re.compile (".*(subset_\d+)")
+subset_regex = re.compile (".*msreis\/(subset_\d+)")
 # Find the parameter order for each model
 model_params = {}
-for model_dir in model_dirs:
-    priors_file = model_dir + '/model.priors'
-    model_file = model_dir + '/model.sbml'
+for current_dir in all_dirs:
+    model_dir_match = subset_regex.match (current_dir)
+    print (model_dir_match)
+    if not model_dir_match:
+        continue
+    
+    model_dirs.append (current_dir)
+    subset = model_dir_match.group (1)
+    priors_file = current_dir + '/model.priors'
+    model_file = current_dir + '/model.sbml'
     model_sbml = SBML ()
     model_sbml.load_file (model_file)
-    theta_priors = define_sbml_params_priors (model_sbml, priors_file)
+    theta_priors = define_sbml_params_priors (model_sbml, 
+            priors_file)
     param_names = [] 
     # ignore observation noise parameter, which is the last
     for p in theta_priors[:-1]:
         original_name = model_sbml.get_original_param_name (p.name)
         param_names.append (original_name)
-    subset = subset_regex.match (model_dir).group (1)
     model_params[subset] = param_names
 models = list (model_params.keys ())
 

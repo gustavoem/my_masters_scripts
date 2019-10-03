@@ -6,10 +6,10 @@ import numpy as np
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
-from marginal_likelihood.ODES import ODES
-from marginal_likelihood.SBML import SBML
-from marginal_likelihood.SBMLtoODES import sbml_to_odes
-from marginal_likelihood.RandomParameterList import RandomParameterList
+from model.ODES import ODES
+from model.SBML import SBML
+from model.SBMLtoODES import sbml_to_odes
+from model.RandomParameterList import RandomParameterList
 from experiment.ExperimentSet import ExperimentSet
 
 class FullSample:

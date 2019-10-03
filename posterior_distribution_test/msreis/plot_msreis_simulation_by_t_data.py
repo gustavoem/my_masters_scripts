@@ -70,7 +70,7 @@ def plot_multiple_simulations (plot_title, exp_measure,
     plt.ylabel ('$[' + exp_measure + ']$')
     plt.xlabel ('Time (s)')
     ax.legend ()
-    fig.savefig (figname, transparent=True)
+    fig.savefig (figname, transparent=False)
     plt.clf ()
 
 
@@ -91,7 +91,7 @@ def plot_simulations_mean (plot_title, exp_measure, exp_observations,
     plt.errorbar (times, sim_mean, sim_std, 
             label='Simulated observations')
     ax.legend ()
-    fig.savefig (figname, transparent=True)
+    fig.savefig (figname, transparent=False)
     plt.clf ()
 
 
