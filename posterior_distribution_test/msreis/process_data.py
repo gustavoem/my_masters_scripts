@@ -20,8 +20,9 @@ subset_regex = re.compile (".*msreis\/(subset_\d+)")
 model_params = {}
 for current_dir in all_dirs:
     model_dir_match = subset_regex.match (current_dir)
-    print (model_dir_match)
+    # print (model_dir_match)
     if not model_dir_match:
+        # print ("not a model subset")
         continue
     
     model_dirs.append (current_dir)

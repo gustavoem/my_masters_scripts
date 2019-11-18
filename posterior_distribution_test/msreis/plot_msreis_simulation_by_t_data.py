@@ -150,7 +150,7 @@ for model in models:
     for temp in all_temperature:
         print ("Temperature: " + str (temp))
         sample = sample_obj.get_iteration_sample (model_sample, temp)
-        sample_size = min (10, len (sample))
+        sample_size = min (50, len (sample))
         sample_idx = np.random.choice (range (len (sample)), 
                 sample_size, replace=False)
 
@@ -158,9 +158,11 @@ for model in models:
         temp_simulations = []
         for obs in sub_sample:
             n_params = len (sample_obj.get_model_params (model))
+            print("Printing observation: ")
             for i in range (n_params):
                 p_name = 'p' + str (i + 1)
                 p_value = obs[2 + i]
+                print(p_name, p_value)
                 odes.define_parameter (p_name, p_value)
             simulation = odes.evaluate_exp_on (experiment_measure, 
                     experiment_times)

@@ -28,7 +28,7 @@ for m in models:
     out.write (line)
 
 for i in range (len (models)):
-    file_name = 'tail_girolami_' + str (i + 1) + '_gamma.txt'
+    file_name = 'tail_girolami_' + str (i + 1) + '.txt'
     try:
         f = open (file_name)
     except:
