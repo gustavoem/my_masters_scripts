@@ -1,0 +1,699 @@
+[
+    {
+        "name": "SR1",
+        "reactants": [
+            "RAF"
+        ],
+        "products": [
+            "RAF_P"
+        ],
+        "modifiers": [
+            "ras_gtp"
+        ],
+        "parameters": [
+            {
+                "name": "kcat_SR1",
+                "prior": {
+                    "type": "Gamma",
+                    "shape": 2,
+                    "scale": 1
+                }
+            },
+            {
+                "name": "Km_SR1",
+                "prior": {
+                    "type": "Gamma",
+                    "shape": 2,
+                    "scale": 4
+                }
+            }
+        ],
+        "formula": "kcat_SR1 * ras_gtp * RAF / (Km_SR1 + RAF)"
+    },
+    {
+        "name": "SR2",
+        "reactants": [
+            "MEK"
+        ],
+        "products": [
+            "MEK_PP"
+        ],
+        "modifiers": [
+            "RAF_P"
+        ],
+        "parameters": [
+            {
+                "name": "kcat_SR2",
+                "prior": {
+                    "type": "Gamma",
+                    "shape": 2,
+                    "scale": 1
+                }
+            },
+            {
+                "name": "Km_SR2",
+                "prior": {
+                    "type": "Gamma",
+                    "shape": 2,
+                    "scale": 4
+                }
+            }
+        ],
+        "formula": "kcat_SR2 * RAF_P * MEK / (Km_SR2 + MEK)"
+    },
+    {
+        "name": "SR3",
+        "reactants": [
+            "MEK_PP"
+        ],
+        "products": [
+            "MEK"
+        ],
+        "modifiers": [],
+        "parameters": [
+            {
+                "name": "V_SR3",
+                "prior": {
+                    "type": "Gamma",
+                    "shape": 2,
+                    "scale": 1
+                }
+            },
+            {
+                "name": "Km_SR3",
+                "prior": {
+                    "type": "Gamma",
+                    "shape": 2,
+                    "scale": 4
+                }
+            }
+        ],
+        "formula": "V_SR3 * MEK_PP / (Km_SR3 + MEK_PP)"
+    },
+    {
+        "name": "SR4",
+        "reactants": [
+            "ERK"
+        ],
+        "products": [
+            "ERK_PP"
+        ],
+        "modifiers": [
+            "MEK_PP"
+        ],
+        "parameters": [
+            {
+                "name": "kcat_SR4",
+                "prior": {
+                    "type": "Gamma",
+                    "shape": 2,
+                    "scale": 1
+                }
+            },
+            {
+                "name": "Km_SR4",
+                "prior": {
+                    "type": "Gamma",
+                    "shape": 2,
+                    "scale": 4
+                }
+            }
+        ],
+        "formula": "kcat_SR4 * MEK_PP * ERK / (Km_SR4 + ERK)"
+    },
+    {
+        "name": "SR5",
+        "reactants": [
+            "ERK_PP"
+        ],
+        "products": [
+            "ERK"
+        ],
+        "modifiers": [],
+        "parameters": [
+            {
+                "name": "V_SR5",
+                "prior": {
+                    "type": "Gamma",
+                    "shape": 2,
+                    "scale": 1
+                }
+            },
+            {
+                "name": "Km_SR5",
+                "prior": {
+                    "type": "Gamma",
+                    "shape": 2,
+                    "scale": 4
+                }
+            }
+        ],
+        "formula": "V_SR5 * ERK_PP / (Km_SR5 + ERK_PP)"
+    },
+    {
+        "name": "R1",
+        "reactants": [
+            "PKC"
+        ],
+        "products": [
+            "PKCP"
+        ],
+        "modifiers": [
+            "ras_gtp"
+        ],
+        "parameters": [
+            {
+                "name": "kcat_R1",
+                "prior": {
+                    "type": "Gamma",
+                    "shape": 2,
+                    "scale": 1
+                }
+            },
+            {
+                "name": "Km_R1",
+                "prior": {
+                    "type": "Gamma",
+                    "shape": 2,
+                    "scale": 4
+                }
+            }
+        ],
+        "formula": "kcat_R1 * ras_gtp * PKC / (Km_R1 + PKC)"
+    },
+    {
+        "name": "R2",
+        "reactants": [
+            "PKCP"
+        ],
+        "products": [
+            "PKC"
+        ],
+        "modifiers": [],
+        "parameters": [
+            {
+                "name": "V_R2",
+                "prior": {
+                    "type": "Gamma",
+                    "shape": 2,
+                    "scale": 1
+                }
+            },
+            {
+                "name": "Km_R2",
+                "prior": {
+                    "type": "Gamma",
+                    "shape": 2,
+                    "scale": 4
+                }
+            }
+        ],
+        "formula": "V_R2 * PKCP / (Km_R2 + PKCP)"
+    },
+    {
+        "name": "R3",
+        "reactants": [
+            "RAF"
+        ],
+        "products": [
+            "RAF_P"
+        ],
+        "modifiers": [
+            "PKCP"
+        ],
+        "parameters": [
+            {
+                "name": "kcat_R3",
+                "prior": {
+                    "type": "Gamma",
+                    "shape": 2,
+                    "scale": 1
+                }
+            },
+            {
+                "name": "Km_R3",
+                "prior": {
+                    "type": "Gamma",
+                    "shape": 2,
+                    "scale": 4
+                }
+            }
+        ],
+        "formula": "kcat_R3 * PKCP * RAF / (Km_R3 + RAF)"
+    },
+    {
+        "name": "R4",
+        "reactants": [
+            "RAF"
+        ],
+        "products": [
+            "RAF_P"
+        ],
+        "modifiers": [
+            "ERK_PP"
+        ],
+        "parameters": [
+            {
+                "name": "kcat_R4",
+                "prior": {
+                    "type": "Gamma",
+                    "shape": 2,
+                    "scale": 1
+                }
+            },
+            {
+                "name": "Km_R4",
+                "prior": {
+                    "type": "Gamma",
+                    "shape": 2,
+                    "scale": 4
+                }
+            }
+        ],
+        "formula": "kcat_R4 * ERK_PP * RAF / (Km_R4 + RAF)"
+    },
+    {
+        "name": "R5",
+        "reactants": [
+            "MEK"
+        ],
+        "products": [
+            "MEK_P"
+        ],
+        "modifiers": [
+            "RAF_P"
+        ],
+        "parameters": [
+            {
+                "name": "kcat_R5",
+                "prior": {
+                    "type": "Gamma",
+                    "shape": 2,
+                    "scale": 1
+                }
+            },
+            {
+                "name": "Km_R5",
+                "prior": {
+                    "type": "Gamma",
+                    "shape": 2,
+                    "scale": 4
+                }
+            }
+        ],
+        "formula": "kcat_R5 * RAF_P * MEK / (Km_R5 + MEK)"
+    },
+    {
+        "name": "R6",
+        "reactants": [
+            "MEK_P"
+        ],
+        "products": [
+            "MEK_PP"
+        ],
+        "modifiers": [
+            "RAF_P"
+        ],
+        "parameters": [
+            {
+                "name": "kcat_R6",
+                "prior": {
+                    "type": "Gamma",
+                    "shape": 2,
+                    "scale": 1
+                }
+            },
+            {
+                "name": "Km_R6",
+                "prior": {
+                    "type": "Gamma",
+                    "shape": 2,
+                    "scale": 4
+                }
+            }
+        ],
+        "formula": "kcat_R6 * RAF_P * MEK_P / (Km_R6 + MEK_P)"
+    },
+    {
+        "name": "R7",
+        "reactants": [
+            "MEK_PP"
+        ],
+        "products": [
+            "MEK_P"
+        ],
+        "modifiers": [],
+        "parameters": [
+            {
+                "name": "V_R7",
+                "prior": {
+                    "type": "Gamma",
+                    "shape": 2,
+                    "scale": 1
+                }
+            },
+            {
+                "name": "Km_R7",
+                "prior": {
+                    "type": "Gamma",
+                    "shape": 2,
+                    "scale": 4
+                }
+            }
+        ],
+        "formula": "V_R7 * MEK_PP / (Km_R7 + MEK_PP)"
+    },
+    {
+        "name": "R8",
+        "reactants": [
+            "MEK_P"
+        ],
+        "products": [
+            "MEK"
+        ],
+        "modifiers": [],
+        "parameters": [
+            {
+                "name": "V_R8",
+                "prior": {
+                    "type": "Gamma",
+                    "shape": 2,
+                    "scale": 1
+                }
+            },
+            {
+                "name": "Km_R8",
+                "prior": {
+                    "type": "Gamma",
+                    "shape": 2,
+                    "scale": 4
+                }
+            }
+        ],
+        "formula": "V_R8 * MEK_P / (Km_R8 + MEK_P)"
+    },
+    {
+        "name": "R9",
+        "reactants": [
+            "ERK"
+        ],
+        "products": [
+            "ERK_P"
+        ],
+        "modifiers": [
+            "MEK_PP"
+        ],
+        "parameters": [
+            {
+                "name": "kcat_R9",
+                "prior": {
+                    "type": "Gamma",
+                    "shape": 2,
+                    "scale": 1
+                }
+            },
+            {
+                "name": "Km_R9",
+                "prior": {
+                    "type": "Gamma",
+                    "shape": 2,
+                    "scale": 4
+                }
+            }
+        ],
+        "formula": "kcat_R9 * MEK_PP * ERK / (Km_R9 + ERK)"
+    },
+    {
+        "name": "R10",
+        "reactants": [
+            "ERK_P"
+        ],
+        "products": [
+            "ERK_PP"
+        ],
+        "modifiers": [
+            "MEK_PP"
+        ],
+        "parameters": [
+            {
+                "name": "kcat_R10",
+                "prior": {
+                    "type": "Gamma",
+                    "shape": 2,
+                    "scale": 1
+                }
+            },
+            {
+                "name": "Km_R10",
+                "prior": {
+                    "type": "Gamma",
+                    "shape": 2,
+                    "scale": 4
+                }
+            }
+        ],
+        "formula": "kcat_R10 * MEK_PP * ERK_P / (Km_R10 + ERK_P)"
+    },
+    {
+        "name": "R11",
+        "reactants": [
+            "ERK_PP"
+        ],
+        "products": [
+            "ERK_P"
+        ],
+        "modifiers": [],
+        "parameters": [
+            {
+                "name": "V_R11",
+                "prior": {
+                    "type": "Gamma",
+                    "shape": 2,
+                    "scale": 1
+                }
+            },
+            {
+                "name": "Km_R11",
+                "prior": {
+                    "type": "Gamma",
+                    "shape": 2,
+                    "scale": 4
+                }
+            }
+        ],
+        "formula": "V_R11 * ERK_PP / (Km_R11 + ERK_PP)"
+    },
+    {
+        "name": "R12",
+        "reactants": [
+            "ERK_P"
+        ],
+        "products": [
+            "ERK"
+        ],
+        "modifiers": [],
+        "parameters": [
+            {
+                "name": "V_R12",
+                "prior": {
+                    "type": "Gamma",
+                    "shape": 2,
+                    "scale": 1
+                }
+            },
+            {
+                "name": "Km_R12",
+                "prior": {
+                    "type": "Gamma",
+                    "shape": 2,
+                    "scale": 4
+                }
+            }
+        ],
+        "formula": "V_R12 * ERK_P / (Km_R12 + ERK_P)"
+    },
+    {
+        "name": "R13",
+        "reactants": [
+            "MEK_PP"
+        ],
+        "products": [
+            "MEK"
+        ],
+        "modifiers": [
+            "ERK_PP"
+        ],
+        "parameters": [
+            {
+                "name": "kcat_R13",
+                "prior": {
+                    "type": "Gamma",
+                    "shape": 2,
+                    "scale": 1
+                }
+            },
+            {
+                "name": "Km_R13",
+                "prior": {
+                    "type": "Gamma",
+                    "shape": 2,
+                    "scale": 4
+                }
+            }
+        ],
+        "formula": "kcat_R13 * ERK_PP * MEK_PP / (Km_R13 + MEK_PP)"
+    },
+    {
+        "name": "R14",
+        "reactants": [
+            "ERK_PP"
+        ],
+        "products": [
+            "ERK_PP"
+        ],
+        "modifiers": [
+            "ERK"
+        ],
+        "parameters": [
+            {
+                "name": "kcat_R14",
+                "prior": {
+                    "type": "Gamma",
+                    "shape": 2,
+                    "scale": 1
+                }
+            },
+            {
+                "name": "Km_R14",
+                "prior": {
+                    "type": "Gamma",
+                    "shape": 2,
+                    "scale": 4
+                }
+            }
+        ],
+        "formula": "kcat_R14 * ERK_PP * ERK_PP / (Km_R14 + ERK_P)"
+    },
+    {
+        "name": "R15",
+        "reactants": [
+            "ERK"
+        ],
+        "products": [
+            "ERK_PP"
+        ],
+        "modifiers": [
+            "ERK_PP"
+        ],
+        "parameters": [
+            {
+                "name": "kcat_R15",
+                "prior": {
+                    "type": "Gamma",
+                    "shape": 2,
+                    "scale": 1
+                }
+            },
+            {
+                "name": "Km_R15",
+                "prior": {
+                    "type": "Gamma",
+                    "shape": 2,
+                    "scale": 4
+                }
+            }
+        ],
+        "formula": "kcat_R15 * ERK_PP * ERK / (Km_R15 + ERK)"
+    },
+    {
+        "name": "R16",
+        "reactants": [
+            "RAF_P"
+        ],
+        "products": [
+            "RAF"
+        ],
+        "modifiers": [
+            "ERK_PP"
+        ],
+        "parameters": [
+            {
+                "name": "kcat_R16",
+                "prior": {
+                    "type": "Gamma",
+                    "shape": 2,
+                    "scale": 1
+                }
+            },
+            {
+                "name": "Km_R16",
+                "prior": {
+                    "type": "Gamma",
+                    "shape": 2,
+                    "scale": 4
+                }
+            }
+        ],
+        "formula": "kcat_R16 * ERK_PP * RAF_P / (Km_R16 + RAF_P)"
+    },
+    {
+        "name": "R17",
+        "reactants": [
+            "MEK"
+        ],
+        "products": [
+            "MEK_PP"
+        ],
+        "modifiers": [
+            "ERK_PP"
+        ],
+        "parameters": [
+            {
+                "name": "kcat_R17",
+                "prior": {
+                    "type": "Gamma",
+                    "shape": 2,
+                    "scale": 1
+                }
+            },
+            {
+                "name": "Km_R17",
+                "prior": {
+                    "type": "Gamma",
+                    "shape": 2,
+                    "scale": 4
+                }
+            }
+        ],
+        "formula": "kcat_R17 * ERK_PP * MEK / (Km_R17 + MEK)"
+    },
+    {
+        "name": "R18",
+        "reactants": [
+            "RAF_P"
+        ],
+        "products": [
+            "RAF"
+        ],
+        "modifiers": [],
+        "parameters": [
+            {
+                "name": "V_R18",
+                "prior": {
+                    "type": "Gamma",
+                    "shape": 2,
+                    "scale": 1
+                }
+            },
+            {
+                "name": "Km_R18",
+                "prior": {
+                    "type": "Gamma",
+                    "shape": 2,
+                    "scale": 4
+                }
+            }
+        ],
+        "formula": "V_R18 * RAF_P / (Km_R18 + RAF_P)"
+    }
+]
