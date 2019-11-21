@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbml xmlns="http://www.sbml.org/sbml/level2/version4" xmlns:xhtml="http://www.w3.org/1999/xhtml" level="2" version="4">
+  <model name="model_11111000000000000000000">
+    <listOfUnitDefinitions>
+      <unitDefinition id="substance" name="nanomole">
+        <listOfUnits>
+          <unit kind="mole" exponent="1" scale="-9" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+    </listOfUnitDefinitions>
+    <listOfCompartments>
+      <compartment id="uVol" size="1" constant="true"/>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species id="RAF" name="RAF" compartment="uVol" initialConcentration="81.94" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="RAF_P" name="RAF_P" compartment="uVol" initialConcentration="18.06" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="MEK" name="MEK" compartment="uVol" initialConcentration="272.22" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="MEK_PP" name="MEK_PP" compartment="uVol" initialConcentration="7.85" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="ERK" name="ERK" compartment="uVol" initialConcentration="288.5" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="ERK_P" name="ERK_P" compartment="uVol" initialConcentration="0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="ERK_PP" name="ERK_PP" compartment="uVol" initialConcentration="2.93" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="ras_gtp" name="ras_gtp" compartment="uVol" initialConcentration="333" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+    </listOfSpecies>
+    <listOfReactions>
+      <reaction id="SR1" name="Raf activation by Ras" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="RAF"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="RAF_P"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="ras_gtp"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> kcat_SR1 </ci>
+                <ci> ras_gtp </ci>
+                <ci> RAF </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> Km_SR1 </ci>
+                <ci> RAF </ci>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="kcat_SR1" name="kcat_SR1" value="0.25" constant="true"/>
+            <parameter id="Km_SR1" name="Km_SR1" value="8" constant="true"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id="SR2" name="MEK -&gt; MEK_PP" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="MEK"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="MEK_PP"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="RAF_P"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> kcat_SR2 </ci>
+                <ci> RAF_P </ci>
+                <ci> MEK </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> Km_SR2 </ci>
+                <ci> MEK </ci>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="kcat_SR2" name="kcat_SR2" value="0.25" constant="true"/>
+            <parameter id="Km_SR2" name="Km_SR2" value="8" constant="true"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id="SR3" name="MEK_PP -&gt; MEK" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="MEK_PP"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="MEK"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> V_SR3 </ci>
+                <ci> MEK_PP </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> Km_SR3 </ci>
+                <ci> MEK_PP </ci>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="V_SR3" name="V_SR3" value="0.25" constant="true"/>
+            <parameter id="Km_SR3" name="Km_SR3" value="8" constant="true"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id="SR4" name="ERK -&gt; ERKPP" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="ERK"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="ERK_PP"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="MEK_PP"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> kcat_SR4 </ci>
+                <ci> MEK_PP </ci>
+                <ci> ERK </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> Km_SR4 </ci>
+                <ci> ERK </ci>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="kcat_SR4" name="kcat_SR4" value="0.25" constant="true"/>
+            <parameter id="Km_SR4" name="Km_SR4" value="8" constant="true"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id="SR5" name="ERK_PP -&gt; ERK" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="ERK_PP"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="ERK"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> V_SR5 </ci>
+                <ci> ERK_PP </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> Km_SR5 </ci>
+                <ci> ERK_PP </ci>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="V_SR5" name="V_SR5" value="0.25" constant="true"/>
+            <parameter id="Km_SR5" name="Km_SR5" value="8" constant="true"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+    </listOfReactions>
+  </model>
+</sbml>

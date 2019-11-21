@@ -201,7 +201,7 @@ def calculate_score (subset_directory, exp_file):
     exp_file = CURRENT_PATH + '/' + exp_file
     try:
         score = perform_marginal_likelihood (model_file, priors_file, \
-                exp_file, 15000, 1000, 1000, 2000, n_process=15,\
+                exp_file, 13000, 1000, 4000, 13000, n_process=15,\
                 sample_output_file=sample_file)
     except ValueError:
         print ("There was no convergence of parameters in burn-in" \
@@ -248,7 +248,7 @@ random.seed (seed)
 
 # First, let's go up
 n = len (reactions_json)
-while sum (current_subset) <= n:
+while sum (current_subset) <= 10:
     print ("\n-------------\nNew iteration")
     print ("Current subset: ", [int (b) for b in current_subset])
     subset_dir = create_subset_dir (current_subset)

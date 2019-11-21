@@ -1,0 +1,1 @@
+Using 30  we got average time of 50.781

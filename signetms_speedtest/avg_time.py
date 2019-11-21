@@ -40,11 +40,12 @@ odes = sbml_to_odes (sbml)
 experiments = ExperimentSet (experiment_file)
 theta_priors = define_sbml_params_priors (sbml, priors_file)
 
-n_process_list = [24, 32, 64, 128]
+#n_process_list = [24, 32, 64, 128]
+n_process_list = [30]
 for n_process in n_process_list:
     total_time = 0
     for _ in range (repetitions):
-        print ("nprocess - ", n_process, ", iteration - ", _, "done!")
+        #print ("nprocess - ", n_process, ", iteration - ", _, "done!")
         total_time += get_exec_time (odes, experiments, theta_priors, \
                 n_iterations, n_process)
     avg_time = total_time / float (repetitions)

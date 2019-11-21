@@ -1,0 +1,127 @@
+Performing marginal likelihood calculations of model: /mnt/project1/msreis/modelSelection/users/gestrela/my_masters_scripts/walk_through_optimal/subset_10000000011001100000000/model.sbml
+Initialized ODEs
+Phase 1 and 2 starts.
+Completed sampling of subset_10000000011001100000000
+Performing marginal likelihood calculations of model: /mnt/project1/msreis/modelSelection/users/gestrela/my_masters_scripts/walk_through_optimal/subset_10000000011001101000000/model.sbml
+Initialized ODEs
+Phase 1 and 2 starts.
+Completed sampling of subset_10000000011001101000000
+Performing marginal likelihood calculations of model: /mnt/project1/msreis/modelSelection/users/gestrela/my_masters_scripts/walk_through_optimal/subset_10000000011001101000100/model.sbml
+Initialized ODEs
+Phase 1 and 2 starts.
+Completed sampling of subset_10000000011001101000100
+Performing marginal likelihood calculations of model: /mnt/project1/msreis/modelSelection/users/gestrela/my_masters_scripts/walk_through_optimal/subset_10000000011101101000100/model.sbml
+Initialized ODEs
+Phase 1 and 2 starts.
+Completed sampling of subset_10000000011101101000100
+Performing marginal likelihood calculations of model: /mnt/project1/msreis/modelSelection/users/gestrela/my_masters_scripts/walk_through_optimal/subset_10000000011101111000100/model.sbml
+Initialized ODEs
+Phase 1 and 2 starts.
+Phase 3 starts.
+Sampling ended.
+Calculated log marginal likelihood: -203.84243034372534
+log_l = -203.84243034372534
+Completed sampling of subset_10000000011101111000100
+Performing marginal likelihood calculations of model: /mnt/project1/msreis/modelSelection/users/gestrela/my_masters_scripts/walk_through_optimal/subset_10000000011101111000101/model.sbml
+Initialized ODEs
+Phase 1 and 2 starts.
+Completed sampling of subset_10000000011101111000101
+Performing marginal likelihood calculations of model: /mnt/project1/msreis/modelSelection/users/gestrela/my_masters_scripts/walk_through_optimal/subset_10000000011111111000101/model.sbml
+Initialized ODEs
+Phase 1 and 2 starts.
+Completed sampling of subset_10000000011111111000101
+Performing marginal likelihood calculations of model: /mnt/project1/msreis/modelSelection/users/gestrela/my_masters_scripts/walk_through_optimal/subset_10000100011111111000101/model.sbml
+Something else happened
+Error reading file '/mnt/project1/msreis/modelSelection/users/gestrela/my_masters_scripts/walk_through_optimal/subset_10000100011111111000101/model.priors': failed to load external entity "/mnt/project1/msreis/modelSelection/users/gestrela/my_masters_scripts/walk_through_optimal/subset_10000100011111111000101/model.priors"
+Completed sampling of subset_10000100011111111000101
+Performing marginal likelihood calculations of model: /mnt/project1/msreis/modelSelection/users/gestrela/my_masters_scripts/walk_through_optimal/subset_10000100011111111100101/model.sbml
+Initialized ODEs
+Phase 1 and 2 starts.
+Phase 3 starts.
+Sampling ended.
+Calculated log marginal likelihood: -181.16075370223686
+log_l = -181.16075370223686
+Completed sampling of subset_10000100011111111100101
+Performing marginal likelihood calculations of model: /mnt/project1/msreis/modelSelection/users/gestrela/my_masters_scripts/walk_through_optimal/subset_10000101011111111100101/model.sbml
+Initialized ODEs
+Phase 1 and 2 starts.
+Phase 3 starts.
+Sampling ended.
+Calculated log marginal likelihood: -163.30650322001878
+log_l = -163.30650322001878
+Completed sampling of subset_10000101011111111100101
+Performing marginal likelihood calculations of model: /mnt/project1/msreis/modelSelection/users/gestrela/my_masters_scripts/walk_through_optimal/subset_10001101011111111100101/model.sbml
+Initialized ODEs
+Phase 1 and 2 starts.
+Phase 3 starts.
+Sampling ended.
+Calculated log marginal likelihood: -183.14862653612641
+log_l = -183.14862653612641
+Completed sampling of subset_10001101011111111100101
+Performing marginal likelihood calculations of model: /mnt/project1/msreis/modelSelection/users/gestrela/my_masters_scripts/walk_through_optimal/subset_10011101011111111100101/model.sbml
+Initialized ODEs
+Phase 1 and 2 starts.
+Phase 3 starts.
+Sampling ended.
+Calculated log marginal likelihood: -207.777291205787
+log_l = -207.777291205787
+Completed sampling of subset_10011101011111111100101
+Performing marginal likelihood calculations of model: /mnt/project1/msreis/modelSelection/users/gestrela/my_masters_scripts/walk_through_optimal/subset_10011111011111111100101/model.sbml
+Initialized ODEs
+Phase 1 and 2 starts.
+Phase 3 starts.
+Sampling ended.
+Calculated log marginal likelihood: -192.84138147417826
+log_l = -192.84138147417826
+Completed sampling of subset_10011111011111111100101
+Performing marginal likelihood calculations of model: /mnt/project1/msreis/modelSelection/users/gestrela/my_masters_scripts/walk_through_optimal/subset_10111111011111111100101/model.sbml
+Initialized ODEs
+Phase 1 and 2 starts.
+Completed sampling of subset_10111111011111111100101
+Performing marginal likelihood calculations of model: /mnt/project1/msreis/modelSelection/users/gestrela/my_masters_scripts/walk_through_optimal/subset_11111111011111111100101/model.sbml
+Initialized ODEs
+Phase 1 and 2 starts.
+Phase 3 starts.
+Sampling ended.
+Calculated log marginal likelihood: -245.77344192837728
+log_l = -245.77344192837728
+Completed sampling of subset_11111111011111111100101
+Performing marginal likelihood calculations of model: /mnt/project1/msreis/modelSelection/users/gestrela/my_masters_scripts/walk_through_optimal/subset_11111111011111111101101/model.sbml
+Initialized ODEs
+Phase 1 and 2 starts.
+Completed sampling of subset_11111111011111111101101
+Performing marginal likelihood calculations of model: /mnt/project1/msreis/modelSelection/users/gestrela/my_masters_scripts/walk_through_optimal/subset_11111111011111111101111/model.sbml
+Initialized ODEs
+Phase 1 and 2 starts.
+Phase 3 starts.
+Sampling ended.
+Calculated log marginal likelihood: -345.292262114425
+log_l = -345.292262114425
+Completed sampling of subset_11111111011111111101111
+Performing marginal likelihood calculations of model: /mnt/project1/msreis/modelSelection/users/gestrela/my_masters_scripts/walk_through_optimal/subset_11111111111111111101111/model.sbml
+Initialized ODEs
+Phase 1 and 2 starts.
+Completed sampling of subset_11111111111111111101111
+Performing marginal likelihood calculations of model: /mnt/project1/msreis/modelSelection/users/gestrela/my_masters_scripts/walk_through_optimal/subset_11111111111111111111111/model.sbml
+Initialized ODEs
+Phase 1 and 2 starts.
+Completed sampling of subset_11111111111111111111111
+subset_10000000011001100000000: None
+subset_10000000011001101000000: None
+subset_10000000011001101000100: None
+subset_10000000011101101000100: None
+subset_10000000011101111000100: -203.84243034372534
+subset_10000000011101111000101: None
+subset_10000000011111111000101: None
+subset_10000100011111111000101: None
+subset_10000100011111111100101: -181.16075370223686
+subset_10000101011111111100101: -163.30650322001878
+subset_10001101011111111100101: -183.14862653612641
+subset_10011101011111111100101: -207.777291205787
+subset_10011111011111111100101: -192.84138147417826
+subset_10111111011111111100101: None
+subset_11111111011111111100101: -245.77344192837728
+subset_11111111011111111101101: None
+subset_11111111011111111101111: -345.292262114425
+subset_11111111111111111101111: None
+subset_11111111111111111111111: None
