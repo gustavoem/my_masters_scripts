@@ -1,5 +1,5 @@
 from pathlib import Path
-SIGNET_MS_PATH =  '/home/gestrela/cs/SigNetMS'
+SIGNET_MS_PATH =  '/home/gestrela/SigNetMS'
 CURRENT_PATH = str (Path ().absolute ())
 import sys
 sys.path.insert (0, SIGNET_MS_PATH)
@@ -39,8 +39,8 @@ all_subsets = [
         "subset_10000000011101101000100",
         "subset_10000000011101111000100",
         "subset_10000000011101111000101",
-        "subset_10000000011111111000101",
-        "subset_10000100011111111000101",
+        "subset_10000000011111111000101", # optimal
+        "subset_10000100011111111000101", 
         "subset_10000100011111111100101",
         "subset_10000101011111111100101",
         "subset_10001101011111111100101",

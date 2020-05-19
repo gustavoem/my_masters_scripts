@@ -1,6 +1,6 @@
 from pathlib import Path
 #SIGNET_MS_PATH =  '/project/msreis/modelSelection/project/SigNetMS'
-SIGNET_MS_PATH = '/home/gestrela/cs/SigNetMS'
+SIGNET_MS_PATH = '/home/gestrela/SigNetMS'
 CURRENT_PATH = str (Path ().absolute ())
 
 import sys
@@ -195,7 +195,6 @@ def add_reaction_to_model (model, reaction_json):
 def calculate_score (subset_directory, exp_file):
     """ Given the subset of a model, calculates the score of this model. 
     """
-    return 0
     subset_dir_path = CURRENT_PATH + '/' + subset_directory
     model_file = subset_dir_path + '/model.sbml'
     priors_file = subset_dir_path + '/model.priors'
