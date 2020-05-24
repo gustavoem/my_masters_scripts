@@ -202,7 +202,7 @@ def calculate_score (subset_directory, exp_file):
     exp_file = CURRENT_PATH + '/' + exp_file
     try:
         score = perform_marginal_likelihood (model_file, priors_file, \
-                exp_file, 15000, 1000, 1000, 2000, n_process=15,\
+                exp_file, 10000, 1000, 1000, 2000, n_process=15,\
                 sample_output_file=sample_file)
     except ValueError:
         print ("There was no convergence of parameters in burn-in" \
@@ -259,11 +259,10 @@ computed_score = []
 random.seed (seed)
 
 scores_filename = 'subsets_scores.txt'
-scores_file = open (scores_filename, 'w')
 
 # First, let's go up
 n = len (reactions_json)
-while sum (current_subset) <= n:
+while sum (current_subset) <= n - 4:
     print ("\n-------------\nNew iteration")
     print ("Current subset: ", [int (b) for b in current_subset])
     subset_dir = create_subset_dir (current_subset)
@@ -272,10 +271,13 @@ while sum (current_subset) <= n:
     print ("Created and saved priors and model")
     
     score = calculate_score (subset_dir, experiments_file)
+
+    scores_file = open (scores_filename, 'a')
     subset_str = ''.join (str (int (b)) for b in current_subset)
     computed_subsets.append (subset_str)
     computed_score.append (score)
     scores_file.write (subset_str + ': ' + str (score) + '\n')
+    scores_file.close ()
 
     candidates = get_candidate_reactions (current_subset)
     if candidates == []:
@@ -294,6 +296,13 @@ while sum (current_subset) <= n:
         computed_subsets.append (''.join (str (int (b)) \
                 for b in current_subset))
         computed_score.append (score)
+        
+        scores_file = open (scores_filename, 'a')
+        subset_str = ''.join (str (int (b)) for b in current_subset)
+        computed_subsets.append (subset_str)
+        computed_score.append (score)
+        scores_file.write (subset_str + ': ' + str (score) + '\n')
+        scores_file.close ()
 
         candidates = get_candidate_reactions (current_subset)
         if candidates == []:
