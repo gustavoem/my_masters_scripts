@@ -193,8 +193,25 @@ def add_reaction_to_model (model, reaction_json):
     model.add_reaction (reaction)
 
 
+def initialize_cluster_input ():
+    return []
+
+
+def add_model_to_cluster_input (subset_directory, cluster_json):
+    model_task_obj = {
+        "name": subset_directory,
+        "model_file": "input/" + subset_directory + "/model.sbml",
+        "prior_file": "input/" + subset_directory + "/model.priors",
+        "phase1_it": "10000",
+        "sigma_update_n": "1000",
+        "phase2_it": "3000",
+        "phase3_it": "2000",
+    }
+    cluster_json.append (model_task_obj)
+
+
 def calculate_score (subset_directory, exp_file, seed):
-    """ Given the subset of a model, calculates the score of this model. 
+    """ Given the subset of a model, calculates the score of this model.
     """
     subset_dir_path = CURRENT_PATH + '/' + subset_directory
     model_file = subset_dir_path + '/model.sbml'
@@ -239,13 +256,18 @@ parser.add_argument ("experiments_file", help="An xml file with the" \
         + "experiment performed.")
 parser.add_argument ("--seed", type=int, nargs='?', default=0, help="Seed for random number" \
         + "generator.")
+parser.add_argument ("--cluster_input", type=bool, nargs="?", const=True,
+        help="Set as true if you just want to generate a cluster run" \
+        + "input file")
 args = parser.parse_args ()
 
 starting_model_file = args.starting_model
 interactions_file = args.interactions_file
 experiments_file = args.experiments_file
 seed =  args.seed
+cluster_input = args.cluster_input
 
+# random seed to chain generation
 random.seed(seed)
 
 reactions_json = read_reactions_database (interactions_file)
@@ -263,6 +285,10 @@ computed_score = []
 
 scores_filename = 'subsets_scores.txt'
 
+cluster_json = None
+if cluster_input:
+    cluster_json = initialize_cluster_input ()
+
 # First, let's go up
 n = len (reactions_json)
 while sum (current_subset) <= n - 4:
@@ -273,7 +299,11 @@ while sum (current_subset) <= n - 4:
     save_model_file (current_model, subset_dir)
     print ("Created and saved priors and model")
     
-    score, elapsed_time = calculate_score (subset_dir, \
+    if cluster_json is not None:
+        add_model_to_cluster_input (subset_dir, cluster_json)
+        score, elapsed_time = 0, 0
+    else:
+        score, elapsed_time = calculate_score (subset_dir, \
             experiments_file, seed)
 
     scores_file = open (scores_filename, 'a')
@@ -327,3 +357,10 @@ while sum (current_subset) <= n - 4:
 results = [r for r in zip (computed_subsets, computed_score)]
 for r in results:
     print (r)
+
+if cluster_json:
+    with open('cluster_input.json', 'w') as outfile:
+        outfile.write(
+            json.dumps(cluster_json, indent=4)
+        )
+    print ("Your cluster task file is ready at cluster_input.json!")
