@@ -17,6 +17,7 @@ import os
 import json
 import argparse
 import random
+import time
 
 
 def model_has_reaction (model, reac):
@@ -200,7 +201,9 @@ def calculate_score (subset_directory, exp_file, seed):
     priors_file = subset_dir_path + '/model.priors'
     sample_file = subset_dir_path + '/sample.txt'
     exp_file = CURRENT_PATH + '/' + exp_file
+    start = time.time()
     try:
+        score = 0
         score = perform_marginal_likelihood (model_file, priors_file, \
                 exp_file, 15000, 1000, 3000, 2000, n_process=15,\
                 sample_output_file=sample_file, seed=seed)
@@ -212,7 +215,8 @@ def calculate_score (subset_directory, exp_file, seed):
         print ("Something else happened")
         print (e)
         score = None
-    return score
+    end = time.time()
+    return score, end - start
 
 
 def get_candidate_reactions (current_subset):
@@ -242,6 +246,8 @@ interactions_file = args.interactions_file
 experiments_file = args.experiments_file
 seed =  args.seed
 
+random.seed(seed)
+
 reactions_json = read_reactions_database (interactions_file)
 starting_model = SBML ()
 starting_model.load_file (starting_model_file)
@@ -267,13 +273,15 @@ while sum (current_subset) <= n - 4:
     save_model_file (current_model, subset_dir)
     print ("Created and saved priors and model")
     
-    score = calculate_score (subset_dir, experiments_file, seed)
+    score, elapsed_time = calculate_score (subset_dir, \
+            experiments_file, seed)
 
     scores_file = open (scores_filename, 'a')
     subset_str = ''.join (str (int (b)) for b in current_subset)
     computed_subsets.append (subset_str)
     computed_score.append (score)
-    scores_file.write (subset_str + ': ' + str (score) + '\n')
+    scores_file.write (subset_str + ': ' + str (score))
+    scores_file.write (', ' + str (elapsed_time) + '\n')
     scores_file.close ()
 
     candidates = get_candidate_reactions (current_subset)
