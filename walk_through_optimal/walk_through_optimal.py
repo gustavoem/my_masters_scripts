@@ -197,11 +197,13 @@ def initialize_cluster_input ():
     return []
 
 
-def add_model_to_cluster_input (subset_directory, cluster_json):
+def add_model_to_cluster_input (subset_directory, exp_file, \
+        cluster_json):
     model_task_obj = {
         "name": subset_directory,
         "model_file": "input/" + subset_directory + "/model.sbml",
         "prior_file": "input/" + subset_directory + "/model.priors",
+        "experiment_file": "input/" + exp_file,
         "phase1_it": "10000",
         "sigma_update_n": "1000",
         "phase2_it": "3000",
@@ -300,7 +302,8 @@ while sum (current_subset) <= n - 4:
     print ("Created and saved priors and model")
     
     if cluster_json is not None:
-        add_model_to_cluster_input (subset_dir, cluster_json)
+        add_model_to_cluster_input (subset_dir, experiments_file, \
+                cluster_json)
         score, elapsed_time = 0, 0
     else:
         score, elapsed_time = calculate_score (subset_dir, \
