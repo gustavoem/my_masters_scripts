@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<!--
+  Input file for simulation of Correct-model.
+
+  Copyright (C) 2020  Marcelo S. Reis and Gustavo Estrela.
+
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<input>
+
+  <modelnumber> 1 </modelnumber>
+
+  <restart> False </restart>
+
+  <autoepsilon>
+    <finalepsilon> 1.0 </finalepsilon>
+    <alpha> 0.9 </alpha>
+  </autoepsilon>
+
+  <particles> 1 </particles>
+
+  <beta> 1 </beta>
+
+  <dt> 0.01 </dt>
+
+  <kernel> uniform </kernel>
+
+  <modelkernel> 0.7 </modelkernel>
+
+  <data>
+    <times> 0 10 20 30 40 50 60 70 80 90 100 110 120 130 140 150 160 170 180 190 200 </times>
+  </data>
+
+  <models>
+    <model1>
+      <name> Correct-model </name>
+      <source> Correct-model.sbml </source>
+      <type> ODE </type>
+      <fit> None </fit>
+      <initial>
+        <ic1> constant 200 </ic1>
+        <ic2> constant   0 </ic2>
+        <ic3> constant   0 </ic3>
+        <ic4> constant 900 </ic4>
+        <ic5> constant 100 </ic5>
+        <ic6> constant 200 </ic6>
+        <ic7> constant 125 </ic7>
+        <ic8> constant 275 </ic8>
+      </initial>
+      <parameters>
+        <parameter1>  constant 1.0    </parameter1>
+        <parameter2>  constant 1.8e-4 </parameter2>
+        <parameter3>  constant 3.0    </parameter3>
+        <parameter4>  constant 1.7e-4 </parameter4>
+        <parameter5>  constant 0.04   </parameter5>
+        <parameter6>  constant 3.8    </parameter6>
+        <parameter7>  constant 1.64e3 </parameter7>
+        <parameter8>  constant 0.003  </parameter8>
+        <parameter9>  constant 9.12e3 </parameter9>
+        <parameter10> constant 0.1    </parameter10>
+        <parameter11> constant 1.07e2 </parameter11>
+        <parameter12> constant 0.01   </parameter12>
+        <parameter13> constant 1836   </parameter13>
+      </parameters>
+    </model1>
+  </models>
+
+</input>
