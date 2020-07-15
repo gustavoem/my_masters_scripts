@@ -1,6 +1,6 @@
 from pathlib import Path
 #SIGNET_MS_PATH =  '/project/msreis/modelSelection/project/SigNetMS'
-SIGNET_MS_PATH = '/home/gestrela/cs/SigNetMS'
+SIGNET_MS_PATH = '/home/gestrela/SigNetMS'
 CURRENT_PATH = str (Path ().absolute ())
 
 import sys
@@ -17,6 +17,7 @@ import os
 import json
 import argparse
 import random
+import time
 
 
 def model_has_reaction (model, reac):
@@ -192,19 +193,39 @@ def add_reaction_to_model (model, reaction_json):
     model.add_reaction (reaction)
 
 
-def calculate_score (subset_directory, exp_file):
-    """ Given the subset of a model, calculates the score of this model. 
+def initialize_cluster_input ():
+    return []
+
+
+def add_model_to_cluster_input (subset_directory, exp_file, \
+        cluster_json):
+    model_task_obj = {
+        "name": subset_directory,
+        "model_file": "input/" + subset_directory + "/model.sbml",
+        "prior_file": "input/" + subset_directory + "/model.priors",
+        "experiment_file": "input/" + exp_file,
+        "phase1_it": "10000",
+        "sigma_update_n": "1000",
+        "phase2_it": "3000",
+        "phase3_it": "2000",
+    }
+    cluster_json.append (model_task_obj)
+
+
+def calculate_score (subset_directory, exp_file, seed):
+    """ Given the subset of a model, calculates the score of this model.
     """
-    return 0
     subset_dir_path = CURRENT_PATH + '/' + subset_directory
     model_file = subset_dir_path + '/model.sbml'
     priors_file = subset_dir_path + '/model.priors'
     sample_file = subset_dir_path + '/sample.txt'
     exp_file = CURRENT_PATH + '/' + exp_file
+    start = time.time()
     try:
+        score = 0
         score = perform_marginal_likelihood (model_file, priors_file, \
-                exp_file, 15000, 1000, 1000, 2000, n_process=15,\
-                sample_output_file=sample_file)
+                exp_file, 15000, 1000, 3000, 2000, n_process=15,\
+                sample_output_file=sample_file, seed=seed)
     except ValueError:
         print ("There was no convergence of parameters in burn-in" \
                 + " sampling.")
@@ -213,7 +234,8 @@ def calculate_score (subset_directory, exp_file):
         print ("Something else happened")
         print (e)
         score = None
-    return score
+    end = time.time()
+    return score, end - start
 
 
 def get_candidate_reactions (current_subset):
@@ -236,12 +258,19 @@ parser.add_argument ("experiments_file", help="An xml file with the" \
         + "experiment performed.")
 parser.add_argument ("--seed", type=int, nargs='?', default=0, help="Seed for random number" \
         + "generator.")
+parser.add_argument ("--cluster_input", type=bool, nargs="?", const=True,
+        help="Set as true if you just want to generate a cluster run" \
+        + "input file")
 args = parser.parse_args ()
 
 starting_model_file = args.starting_model
 interactions_file = args.interactions_file
 experiments_file = args.experiments_file
 seed =  args.seed
+cluster_input = args.cluster_input
+
+# random seed to chain generation
+random.seed(seed)
 
 reactions_json = read_reactions_database (interactions_file)
 starting_model = SBML ()
@@ -256,15 +285,15 @@ current_subset = starting_subset.copy ()
 computed_subsets = []
 computed_score = []
 
-# defines a seed
-random.seed (seed)
-
 scores_filename = 'subsets_scores.txt'
-scores_file = open (scores_filename, 'w')
+
+cluster_json = None
+if cluster_input:
+    cluster_json = initialize_cluster_input ()
 
 # First, let's go up
 n = len (reactions_json)
-while sum (current_subset) <= n:
+while sum (current_subset) <= n - 4:
     print ("\n-------------\nNew iteration")
     print ("Current subset: ", [int (b) for b in current_subset])
     subset_dir = create_subset_dir (current_subset)
@@ -272,11 +301,21 @@ while sum (current_subset) <= n:
     save_model_file (current_model, subset_dir)
     print ("Created and saved priors and model")
     
-    score = calculate_score (subset_dir, experiments_file)
+    if cluster_json is not None:
+        add_model_to_cluster_input (subset_dir, experiments_file, \
+                cluster_json)
+        score, elapsed_time = 0, 0
+    else:
+        score, elapsed_time = calculate_score (subset_dir, \
+            experiments_file, seed)
+
+    scores_file = open (scores_filename, 'a')
     subset_str = ''.join (str (int (b)) for b in current_subset)
     computed_subsets.append (subset_str)
     computed_score.append (score)
-    scores_file.write (subset_str + ': ' + str (score) + '\n')
+    scores_file.write (subset_str + ': ' + str (score))
+    scores_file.write (', ' + str (elapsed_time) + '\n')
+    scores_file.close ()
 
     candidates = get_candidate_reactions (current_subset)
     if candidates == []:
@@ -295,6 +334,13 @@ while sum (current_subset) <= n:
         computed_subsets.append (''.join (str (int (b)) \
                 for b in current_subset))
         computed_score.append (score)
+        
+        scores_file = open (scores_filename, 'a')
+        subset_str = ''.join (str (int (b)) for b in current_subset)
+        computed_subsets.append (subset_str)
+        computed_score.append (score)
+        scores_file.write (subset_str + ': ' + str (score) + '\n')
+        scores_file.close ()
 
         candidates = get_candidate_reactions (current_subset)
         if candidates == []:
@@ -314,3 +360,10 @@ while sum (current_subset) <= n:
 results = [r for r in zip (computed_subsets, computed_score)]
 for r in results:
     print (r)
+
+if cluster_json:
+    with open('cluster_input.json', 'w') as outfile:
+        outfile.write(
+            json.dumps(cluster_json, indent=4)
+        )
+    print ("Your cluster task file is ready at cluster_input.json!")
