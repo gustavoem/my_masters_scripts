@@ -3,27 +3,35 @@
   <Experiment>
     <row>
       <element value="30" index="0"/>
-      <element value="797.1280703223586" index="1"/>
+      <element value="797.1412299740215" index="1"/>
     </row>
     <row>
       <element value="60" index="0"/>
-      <element value="813.6095473114302" index="1"/>
+      <element value="813.6035508222125" index="1"/>
+    </row>
+    <row>
+      <element value="90" index="0"/>
+      <element value="813.5939588072065" index="1"/>
+    </row>
+    <row>
+      <element value="120" index="0"/>
+      <element value="813.6096427727834" index="1"/>
+    </row>
+    <row>
+      <element value="150" index="0"/>
+      <element value="813.6141173981007" index="1"/>
     </row>
     <row>
       <element value="180" index="0"/>
-      <element value="813.6029563284768" index="1"/>
+      <element value="813.6159178092034" index="1"/>
     </row>
     <row>
-      <element value="300" index="0"/>
-      <element value="813.6154789961477" index="1"/>
+      <element value="210" index="0"/>
+      <element value="813.6079649587211" index="1"/>
     </row>
     <row>
-      <element value="900" index="0"/>
-      <element value="813.6013782616294" index="1"/>
-    </row>
-    <row>
-      <element value="1800" index="0"/>
-      <element value="813.5925317021006" index="1"/>
+      <element value="240" index="0"/>
+      <element value="813.6125664082232" index="1"/>
     </row>
     <condition/>
     <interpretation>
@@ -34,27 +42,35 @@
   <Experiment>
     <row>
       <element value="30" index="0"/>
-      <element value="797.1188093835962" index="1"/>
+      <element value="797.129056560276" index="1"/>
     </row>
     <row>
       <element value="60" index="0"/>
-      <element value="813.6022523609922" index="1"/>
+      <element value="813.6131131215215" index="1"/>
+    </row>
+    <row>
+      <element value="90" index="0"/>
+      <element value="813.6241542913891" index="1"/>
+    </row>
+    <row>
+      <element value="120" index="0"/>
+      <element value="813.6109539351388" index="1"/>
+    </row>
+    <row>
+      <element value="150" index="0"/>
+      <element value="813.6233603485829" index="1"/>
     </row>
     <row>
       <element value="180" index="0"/>
-      <element value="813.6123454173184" index="1"/>
+      <element value="813.6055758791712" index="1"/>
     </row>
     <row>
-      <element value="300" index="0"/>
-      <element value="813.6169426361928" index="1"/>
+      <element value="210" index="0"/>
+      <element value="813.6120499499872" index="1"/>
     </row>
     <row>
-      <element value="900" index="0"/>
-      <element value="813.6065980336556" index="1"/>
-    </row>
-    <row>
-      <element value="1800" index="0"/>
-      <element value="813.6067775004942" index="1"/>
+      <element value="240" index="0"/>
+      <element value="813.6201086463687" index="1"/>
     </row>
     <condition/>
     <interpretation>
@@ -65,27 +81,35 @@
   <Experiment>
     <row>
       <element value="30" index="0"/>
-      <element value="797.1199398249908" index="1"/>
+      <element value="797.1228352302487" index="1"/>
     </row>
     <row>
       <element value="60" index="0"/>
-      <element value="813.6275541699243" index="1"/>
+      <element value="813.6264236223701" index="1"/>
+    </row>
+    <row>
+      <element value="90" index="0"/>
+      <element value="813.6187194882858" index="1"/>
+    </row>
+    <row>
+      <element value="120" index="0"/>
+      <element value="813.6219718364518" index="1"/>
+    </row>
+    <row>
+      <element value="150" index="0"/>
+      <element value="813.6078027225045" index="1"/>
     </row>
     <row>
       <element value="180" index="0"/>
-      <element value="813.6300095568109" index="1"/>
+      <element value="813.6110705078848" index="1"/>
     </row>
     <row>
-      <element value="300" index="0"/>
-      <element value="813.6219041196132" index="1"/>
+      <element value="210" index="0"/>
+      <element value="813.6088994333538" index="1"/>
     </row>
     <row>
-      <element value="900" index="0"/>
-      <element value="813.6053756316671" index="1"/>
-    </row>
-    <row>
-      <element value="1800" index="0"/>
-      <element value="813.5882584296988" index="1"/>
+      <element value="240" index="0"/>
+      <element value="813.6172467680697" index="1"/>
     </row>
     <condition/>
     <interpretation>
