@@ -1,7 +1,7 @@
 from pathlib import Path
 # SIGNET_MS_PATH =  '/project/msreis/modelSelection/project/SigNetMS'
-# SIGNET_MS_PATH = '/home/gestrela/SigNetMS'
-SIGNET_MS_PATH = '/home/gustavo/cs/SigNetMS'
+SIGNET_MS_PATH = '/home/gestrela/SigNetMS'
+#SIGNET_MS_PATH = '/home/gustavo/cs/SigNetMS'
 CURRENT_PATH = str (Path ().absolute ())
 
 import sys
@@ -195,9 +195,18 @@ def calculate_score (subset_directory, exp_file, seed):
     start = time.time()
     try:
         score = 0
-        score = perform_marginal_likelihood (model_file, priors_file, \
-                exp_file, 5000, 1000, 1000, 1000, n_process=15,\
-                sample_output_file=sample_file, seed=seed)
+        score = (-1) * perform_marginal_likelihood (
+                model_file,
+                priors_file,
+                exp_file,
+                15000,
+                1000,
+                3000,
+                3000,
+                n_process=15,
+                sample_output_file=sample_file,
+                seed=seed
+        )
     except ValueError:
         print ("There was no convergence of parameters in burn-in" \
                 + " sampling.")
