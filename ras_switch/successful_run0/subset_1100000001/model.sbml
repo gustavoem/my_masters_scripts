@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbml xmlns="http://www.sbml.org/sbml/level2/version4" level="2" version="4">
+  <model name="model_1100000001">
+    <listOfCompartments>
+      <compartment id="cell" name="cell" size="1"/>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species id="SOS" compartment="cell" initialAmount="200"/>
+      <species id="SOS_allo_RasGDP" compartment="cell" initialAmount="0"/>
+      <species id="SOS_allo_RasGTP" compartment="cell" initialAmount="0"/>
+      <species id="RasGDP" compartment="cell" initialAmount="900"/>
+      <species id="RasGTP" compartment="cell" initialAmount="100"/>
+      <species id="GEF" compartment="cell" initialAmount="0"/>
+      <species id="GAP" compartment="cell" initialAmount="125"/>
+      <species id="iGAP" compartment="cell" initialAmount="275"/>
+      <species id="RasGTP" name="RasGTP" compartment="cell" initialConcentration="0" constant="false"/>
+    </listOfSpecies>
+    <listOfReactions>
+      <reaction id="GAP_activation_by_RasGTP">
+        <listOfReactants>
+          <speciesReference species="iGAP" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="GAP" stoichiometry="1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="RasGTP"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> k7cat </ci>
+                <ci> iGAP </ci>
+                <ci> RasGTP </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> K7m </ci>
+                <ci> iGAP </ci>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="k7cat" name="k7cat" value="1"/>
+            <parameter id="K7m" name="K7m" value="1"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+    </listOfReactions>
+  </model>
+</sbml>
