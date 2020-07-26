@@ -1,7 +1,7 @@
 from pathlib import Path
 # SIGNET_MS_PATH =  '/project/msreis/modelSelection/project/SigNetMS'
-SIGNET_MS_PATH = '/home/gestrela/SigNetMS'
-#SIGNET_MS_PATH = '/home/gustavo/cs/SigNetMS'
+# SIGNET_MS_PATH = '/home/gestrela/SigNetMS'
+SIGNET_MS_PATH = '/home/gustavo/cs/SigNetMS'
 CURRENT_PATH = str (Path ().absolute ())
 
 import sys
@@ -61,17 +61,13 @@ def create_reaction_object (reaction_json):
     return reactions
 
 
-def build_interference_graph (reaction_list):
+def build_interference_graph (reaction_list, all_species):
     """ Build a graph that says which species interact directly changes
         the concentration of other species over time. """
-    V = []
-    A = []
+    V = all_species
+    A = [[] for v in V]
     for reaction in reaction_list:
         for species in (reaction.reactants + reaction.modifiers):
-            if species not in V:
-                species_idx = len (V)
-                V.insert (species_idx, species)
-                A.insert (species_idx, [])
             species_idx = V.index (species)
             for adjacent_species in reaction.products:
                 if adjacent_species not in V:
@@ -117,7 +113,8 @@ def changes_measures (model, reaction_json, experiment_set):
         the system won't change. 
     """
     all_reactions = model.get_all_reactions ()
-    vertice, arcs = build_interference_graph (all_reactions)
+    all_species = model.get_species_list ()
+    vertice, arcs = build_interference_graph (all_reactions, all_species)
     measure = experiment_set[0].measure_expression
     measure_species = [v for v in vertice if v in measure]
     reaching_v = get_vertice_that_reach (vertice, arcs, measure_species)
