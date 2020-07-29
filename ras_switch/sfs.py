@@ -1,7 +1,8 @@
 from pathlib import Path
-# SIGNET_MS_PATH =  '/project/msreis/modelSelection/project/SigNetMS'
-# SIGNET_MS_PATH = '/home/gestrela/SigNetMS'
-SIGNET_MS_PATH = '/home/gustavo/cs/SigNetMS'
+# SIGNET_MS_PATH =  '/project/msreis/modelSelection/project/SigNetMS'    
+
+SIGNET_MS_PATH = '/home/gestrela/SigNetMS'
+#SIGNET_MS_PATH = '/home/gustavo/cs/SigNetMS'
 CURRENT_PATH = str (Path ().absolute ())
 
 import sys

@@ -1,8 +1,0 @@
-<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
-<priors>
-  <prior distribution="Gamma" a="1" b="2" name="k1"/>
-  <prior distribution="Gamma" a="2" b="2" name="d1"/>
-  <prior distribution="Gamma" a="1" b="2" name="k4cat"/>
-  <prior distribution="Gamma" a="2" b="4500" name="K4m"/>
-  <experimental_error distribution="Gamma" a="2" b="0.1" name="Noise"/>
-</priors>
