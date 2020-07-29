@@ -306,6 +306,10 @@ while sum (current_subset) < n:
         if not changes_measures (current_model, candidate_reaction,
                 experiments):
             score = computed_subsets[current_subset_str]
+            # This might make us prefer reactions that do not change 
+            # measures. Then, let's force choosing a reaction that 
+            # changes measures
+            score = float ("+inf")
         else:
             score, elapsed_time = calculate_score (candidate_dir,
                 experiments_file, seed)
