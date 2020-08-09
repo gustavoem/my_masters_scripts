@@ -1,0 +1,272 @@
+[
+    {
+        "name": "SOS_allo_RasGDP_complexation",
+        "reactants": [
+            "RasGDP",
+            "SOS"
+        ],
+        "products": [
+            "SOS_allo_RasGDP"
+        ],
+        "parameters": [
+            {
+                "name": "k1",
+                "prior": {
+                    "type": "Uniform",
+                    "a": 0.000001,
+                    "b": 0.001
+                }
+            }
+        ],
+        "formula": "k1 * SOS * RasGDP"
+    }, 
+    {
+        "name": "SOS_allo_RasGDP_decomplexation",
+        "reactants": [
+            "SOS_allo_RasGDP"
+        ],
+        "products": [
+            "RasGDP",
+            "SOS"
+        ],
+        "parameters": [
+            {
+                "name": "d1",
+                "prior": {
+                    "type": "Uniform",
+                    "a": 1,
+                    "b": 5
+                }
+            }
+        ],
+        "formula": "d1 * SOS_allo_RasGDP"
+    }, 
+     {
+        "name": "SOS_allo_RasGTP_complexation",
+        "reactants": [
+            "RasGTP",
+            "SOS"
+        ],
+        "products": [
+            "SOS_allo_RasGTP"
+        ],
+        "parameters": [
+            {
+                "name": "k2",
+                "prior": {
+                    "type": "Uniform",
+                    "a": 0.000001,
+                    "b": 0.001
+                }
+            }
+        ],
+        "formula": "k2 * SOS * RasGTP"
+    }, 
+    {
+        "name": "SOS_allo_RasGTP_decomplexation",
+        "reactants": [
+            "SOS_allo_RasGTP"
+        ],
+        "products": [
+            "RasGTP",
+            "SOS"
+        ],
+        "parameters": [
+            {
+                "name": "d2",
+                "prior": {
+                    "type": "Uniform",
+                    "a": 0.001,
+                    "b": 1
+                }
+            }
+        ],
+        "formula": "d2 * SOS_allo_RasGTP"
+    },    
+    {
+        "name": "Ras_inactivation_by_GAP",
+        "reactants": [
+            "RaGTP"
+        ],
+        "products": [
+            "RasGDP"
+        ],
+        "modifiers": [
+            "GAP"
+        ],
+        "parameters": [
+            {
+                "name": "k5cat",
+                "prior": {
+                    "type": "Uniform",
+                    "a": 0.001,
+                    "b": 1
+                }
+            },
+            {
+                "name": "K5m",
+                "prior": {
+                    "type": "Uniform",
+                    "a": 50,
+                    "b": 200
+                }
+            }
+        ],
+        "formula": "k5cat * RasGTP * GAP / (K5m + RasGTP)"
+    },
+    {
+        "name": "Ras_activation_by_SOS_allo_RasGTP",
+        "reactants": [
+            "RasGDP"
+        ],
+        "products": [
+            "RasGTP"
+        ],
+        "modifiers": [
+            "SOS_allo_RasGTP"
+        ],
+        "parameters": [
+            {
+                "name": "k3cat",
+                "prior": {
+                    "type": "Uniform",
+                    "a": 1,
+                    "b": 10
+                }
+            },
+            {
+                "name": "K3m",
+                "prior": {
+                    "type": "Uniform",
+                    "a": 1000,
+                    "b": 2000
+                }
+            }
+        ],
+        "formula": "k3cat * RasGDP * SOS_allo_RasGTP / (K3m + RasGDP)"
+    },
+    {
+        "name": "Ras_activation_by_SOS_allo_RasGDP",
+        "reactants": [
+            "RasGDP"
+        ],
+        "products": [
+            "RasGTP"
+        ],
+        "modifiers": [
+            "SOS_allo_RasGDP"
+        ],
+        "parameters": [
+            {
+                "name": "k4cat",
+                "prior": {
+                    "type": "Uniform",
+                    "a": 0.001,
+                    "b": 1
+                }
+            },
+            {
+                "name": "K4m",
+                "prior": {
+                    "type": "Uniform",
+                    "a": 900,
+                    "b": 90000
+                }
+            }
+        ],
+        "formula": "k4cat * RasGDP * SOS_allo_RasGDP / (K4m + RasGDP)"
+    },
+    {
+        "name": "Ras_activation_by_GEF",
+        "reactants": [
+            "RasGDP"
+        ],
+        "products": [
+            "RasGTP"
+        ],
+        "modifiers": [
+            "GEF"
+        ],
+        "parameters": [
+            {
+                "name": "k6cat",
+                "prior": {
+                    "type": "Uniform",
+                    "a": 0.001,
+                    "b": 0.1
+                }
+            },
+            {
+                "name": "K6m",
+                "prior": {
+                    "type": "Uniform",
+                    "a": 200,
+                    "b": 2000
+                }
+            }
+        ],
+        "formula": "k6cat * RasGDP * GEF / (K6m + RasGDP)"
+    },
+    {
+        "name": "Ras_activation_by_SOS",
+        "reactants": [
+            "RasGDP"
+        ],
+        "products": [
+            "RasGTP"
+        ],
+        "modifiers": [
+            "SOS"
+        ],
+        "parameters": [
+            {
+                "name": "k8cat",
+                "prior": {
+                    "type": "Uniform",
+                    "a": 0.00001,
+                    "b": 0.001
+                }
+            },
+            {
+                "name": "K8m",
+                "prior": {
+                    "type": "Uniform",
+                    "a": 2500,
+                    "b": 7500
+                }
+            }
+        ],
+        "formula": "k8cat * RasGDP * SOS / (K8m + RasGDP)"
+    },
+    {
+        "name": "GAP_activation_by_RasGTP",
+        "reactants": [
+            "iGAP"
+        ],
+        "products": [
+            "GAP"
+        ],
+        "modifiers": [
+            "RasGTP"
+        ],
+        "parameters": [
+            {
+                "name": "k7cat",
+                "prior": {
+                    "type": "Uniform",
+                    "a": 0.001,
+                    "b": 1
+                }
+            },
+            {
+                "name": "K7m",
+                "prior": {
+                    "type": "Uniform",
+                    "a": 500,
+                    "b": 2000
+                }
+            }
+        ],
+        "formula": "k7cat * iGAP * RasGTP / (K7m + iGAP)"
+    }
+]

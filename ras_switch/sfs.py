@@ -14,6 +14,7 @@ from model.PriorsWriter import write_priors_file
 from model.Reaction import Reaction
 from experiment.ExperimentSet import ExperimentSet
 from distributions.Gamma import Gamma
+from distributions.Uniform import Uniform
 from SigNetMS import perform_marginal_likelihood
 import numpy as np
 import os
@@ -149,8 +150,9 @@ def define_priors (subset, reaction_json, subset_directory):
         params = reac["parameters"]
         for param in params:
             name = param["name"]
-            distribution = Gamma (param["prior"]["shape"], \
-                    param["prior"]["scale"])
+            #distribution = Gamma (param["prior"]["shape"], \
+            #        param["prior"]["scale"])
+            distribution = Uniform (param["prior"]["a"], param["prior"]["b"])
             p = RandomParameter (name, distribution)
             theta.append (p)
     sigma_dist = Gamma (2, .1)
