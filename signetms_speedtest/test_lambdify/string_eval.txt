@@ -9,7 +9,7 @@ iteration -  7 done!
 iteration -  8 done!
 iteration -  9 done!
 iteration -  10 done!
-Integrating 1 times, we got average time of 2.748
+Integrating 1 times, we got average time of 0.387
 iteration -  0 done!
 iteration -  1 done!
 iteration -  2 done!
@@ -21,7 +21,7 @@ iteration -  7 done!
 iteration -  8 done!
 iteration -  9 done!
 iteration -  10 done!
-Integrating 10 times, we got average time of 0.906
+Integrating 10 times, we got average time of 2.980
 iteration -  0 done!
 iteration -  1 done!
 iteration -  2 done!
@@ -33,7 +33,7 @@ iteration -  7 done!
 iteration -  8 done!
 iteration -  9 done!
 iteration -  10 done!
-Integrating 100 times, we got average time of 6.681
+Integrating 100 times, we got average time of 35.364
 iteration -  0 done!
 iteration -  1 done!
 iteration -  2 done!
@@ -45,7 +45,7 @@ iteration -  7 done!
 iteration -  8 done!
 iteration -  9 done!
 iteration -  10 done!
-Integrating 200 times, we got average time of 13.157
+Integrating 200 times, we got average time of 72.159
 iteration -  0 done!
 iteration -  1 done!
 iteration -  2 done!
@@ -57,4 +57,4 @@ iteration -  7 done!
 iteration -  8 done!
 iteration -  9 done!
 iteration -  10 done!
-Integrating 400 times, we got average time of 26.975
+Integrating 400 times, we got average time of 139.126
