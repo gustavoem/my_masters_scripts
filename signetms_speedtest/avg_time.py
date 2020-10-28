@@ -1,5 +1,5 @@
 import sys
-#sys.path.insert (0, '/home/gestrela/cs/SigNetMS/.')
+sys.path.insert (0, '/home/gestrela/SigNetMS/.')
 sys.path.insert (0, '/project/msreis/modelSelection/project/SigNetMS')
 
 from model.SBML import SBML
@@ -41,7 +41,7 @@ experiments = ExperimentSet (experiment_file)
 theta_priors = define_sbml_params_priors (sbml, priors_file)
 
 #n_process_list = [24, 32, 64, 128]
-n_process_list = [30]
+n_process_list = [1, 2, 4, 8, 16, 32, 40, 64, 128]
 for n_process in n_process_list:
     total_time = 0
     for _ in range (repetitions):

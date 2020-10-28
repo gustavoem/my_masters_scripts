@@ -1,0 +1,152 @@
+[
+    {
+        "name": "subset_10000000011001100000000",
+        "model_file": "input/subset_10000000011001100000000/model.sbml",
+        "prior_file": "input/subset_10000000011001100000000/model.priors",
+        "experiment_file": "input/gauss_noise.data",
+        "phase1_it": "10000",
+        "sigma_update_n": "1000",
+        "phase2_it": "3000",
+        "phase3_it": "2000"
+    },
+    {
+        "name": "subset_10000000011101100000000",
+        "model_file": "input/subset_10000000011101100000000/model.sbml",
+        "prior_file": "input/subset_10000000011101100000000/model.priors",
+        "experiment_file": "input/gauss_noise.data",
+        "phase1_it": "10000",
+        "sigma_update_n": "1000",
+        "phase2_it": "3000",
+        "phase3_it": "2000"
+    },
+    {
+        "name": "subset_10000000011101110000000",
+        "model_file": "input/subset_10000000011101110000000/model.sbml",
+        "prior_file": "input/subset_10000000011101110000000/model.priors",
+        "experiment_file": "input/gauss_noise.data",
+        "phase1_it": "10000",
+        "sigma_update_n": "1000",
+        "phase2_it": "3000",
+        "phase3_it": "2000"
+    },
+    {
+        "name": "subset_10000000011101111000000",
+        "model_file": "input/subset_10000000011101111000000/model.sbml",
+        "prior_file": "input/subset_10000000011101111000000/model.priors",
+        "experiment_file": "input/gauss_noise.data",
+        "phase1_it": "10000",
+        "sigma_update_n": "1000",
+        "phase2_it": "3000",
+        "phase3_it": "2000"
+    },
+    {
+        "name": "subset_10000000011101111000100",
+        "model_file": "input/subset_10000000011101111000100/model.sbml",
+        "prior_file": "input/subset_10000000011101111000100/model.priors",
+        "experiment_file": "input/gauss_noise.data",
+        "phase1_it": "10000",
+        "sigma_update_n": "1000",
+        "phase2_it": "3000",
+        "phase3_it": "2000"
+    },
+    {
+        "name": "subset_10000000011111111000100",
+        "model_file": "input/subset_10000000011111111000100/model.sbml",
+        "prior_file": "input/subset_10000000011111111000100/model.priors",
+        "experiment_file": "input/gauss_noise.data",
+        "phase1_it": "10000",
+        "sigma_update_n": "1000",
+        "phase2_it": "3000",
+        "phase3_it": "2000"
+    },
+    {
+        "name": "subset_10000000011111111000101",
+        "model_file": "input/subset_10000000011111111000101/model.sbml",
+        "prior_file": "input/subset_10000000011111111000101/model.priors",
+        "experiment_file": "input/gauss_noise.data",
+        "phase1_it": "10000",
+        "sigma_update_n": "1000",
+        "phase2_it": "3000",
+        "phase3_it": "2000"
+    },
+    {
+        "name": "subset_11000000011111111000101",
+        "model_file": "input/subset_11000000011111111000101/model.sbml",
+        "prior_file": "input/subset_11000000011111111000101/model.priors",
+        "experiment_file": "input/gauss_noise.data",
+        "phase1_it": "10000",
+        "sigma_update_n": "1000",
+        "phase2_it": "3000",
+        "phase3_it": "2000"
+    },
+    {
+        "name": "subset_11100000011111111000101",
+        "model_file": "input/subset_11100000011111111000101/model.sbml",
+        "prior_file": "input/subset_11100000011111111000101/model.priors",
+        "experiment_file": "input/gauss_noise.data",
+        "phase1_it": "10000",
+        "sigma_update_n": "1000",
+        "phase2_it": "3000",
+        "phase3_it": "2000"
+    },
+    {
+        "name": "subset_11101000011111111000101",
+        "model_file": "input/subset_11101000011111111000101/model.sbml",
+        "prior_file": "input/subset_11101000011111111000101/model.priors",
+        "experiment_file": "input/gauss_noise.data",
+        "phase1_it": "10000",
+        "sigma_update_n": "1000",
+        "phase2_it": "3000",
+        "phase3_it": "2000"
+    },
+    {
+        "name": "subset_11101000011111111100101",
+        "model_file": "input/subset_11101000011111111100101/model.sbml",
+        "prior_file": "input/subset_11101000011111111100101/model.priors",
+        "experiment_file": "input/gauss_noise.data",
+        "phase1_it": "10000",
+        "sigma_update_n": "1000",
+        "phase2_it": "3000",
+        "phase3_it": "2000"
+    },
+    {
+        "name": "subset_11101000011111111110101",
+        "model_file": "input/subset_11101000011111111110101/model.sbml",
+        "prior_file": "input/subset_11101000011111111110101/model.priors",
+        "experiment_file": "input/gauss_noise.data",
+        "phase1_it": "10000",
+        "sigma_update_n": "1000",
+        "phase2_it": "3000",
+        "phase3_it": "2000"
+    },
+    {
+        "name": "subset_11101000011111111110111",
+        "model_file": "input/subset_11101000011111111110111/model.sbml",
+        "prior_file": "input/subset_11101000011111111110111/model.priors",
+        "experiment_file": "input/gauss_noise.data",
+        "phase1_it": "10000",
+        "sigma_update_n": "1000",
+        "phase2_it": "3000",
+        "phase3_it": "2000"
+    },
+    {
+        "name": "subset_11111000011111111110111",
+        "model_file": "input/subset_11111000011111111110111/model.sbml",
+        "prior_file": "input/subset_11111000011111111110111/model.priors",
+        "experiment_file": "input/gauss_noise.data",
+        "phase1_it": "10000",
+        "sigma_update_n": "1000",
+        "phase2_it": "3000",
+        "phase3_it": "2000"
+    },
+    {
+        "name": "subset_11111000011111111111111",
+        "model_file": "input/subset_11111000011111111111111/model.sbml",
+        "prior_file": "input/subset_11111000011111111111111/model.priors",
+        "experiment_file": "input/gauss_noise.data",
+        "phase1_it": "10000",
+        "sigma_update_n": "1000",
+        "phase2_it": "3000",
+        "phase3_it": "2000"
+    }
+]

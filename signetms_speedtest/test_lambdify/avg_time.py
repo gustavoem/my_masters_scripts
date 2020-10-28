@@ -1,5 +1,5 @@
 import sys
-sys.path.insert (0, '/home/gestrela/cs/SigNetMS/.')
+sys.path.insert (0, '/home/gestrela/SigNetMS/.')
 sys.path.insert (0, '/home/gustavo/cs/SigNetMS/.')
 
 from model.SBML import SBML
@@ -39,8 +39,8 @@ theta_priors = define_sbml_params_priors (sbml, priors_file)
 
 n_process = 24
 #iterations_schedule = [250, 500, 1000, 2000]
-# iterations_schedule = [1, 10, 100, 200, 400]
-iterations_schedule = [1, 10, 20]
+iterations_schedule = [1, 10, 100, 200, 400]
+# iterations_schedule = [1, 10, 20]
 #iterations_schedule = [20, 40]
 for n_iterations in iterations_schedule:
     total_time = 0
