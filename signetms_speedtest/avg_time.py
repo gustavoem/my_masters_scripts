@@ -1,6 +1,8 @@
 import sys
 sys.path.insert (0, '/home/gestrela/SigNetMS/.')
+sys.path.insert (0, '/home/gustavo/cs/SigNetMS/.')
 sys.path.insert (0, '/project/msreis/modelSelection/project/SigNetMS')
+
 
 from model.SBML import SBML
 from model.SBMLtoODES import sbml_to_odes

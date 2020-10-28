@@ -13,7 +13,9 @@ from model.PriorsWriter import write_priors_file
 from model.Reaction import Reaction
 from experiment.ExperimentSet import ExperimentSet
 from distributions.Gamma import Gamma
+from distributions.Uniform import Uniform
 from SigNetMS import perform_marginal_likelihood
+import numpy as np
 import os
 import json
 import argparse
@@ -60,17 +62,13 @@ def create_reaction_object (reaction_json):
     return reactions
 
 
-def build_interference_graph (reaction_list):
+def build_interference_graph (reaction_list, all_species):
     """ Build a graph that says which species interact directly changes
         the concentration of other species over time. """
-    V = []
-    A = []
+    V = all_species
+    A = [[] for v in V]
     for reaction in reaction_list:
         for species in (reaction.reactants + reaction.modifiers):
-            if species not in V:
-                species_idx = len (V)
-                V.insert (species_idx, species)
-                A.insert (species_idx, [])
             species_idx = V.index (species)
             for adjacent_species in reaction.products:
                 if adjacent_species not in V:
@@ -116,7 +114,8 @@ def changes_measures (model, reaction_json, experiment_set):
         the system won't change. 
     """
     all_reactions = model.get_all_reactions ()
-    vertice, arcs = build_interference_graph (all_reactions)
+    all_species = model.get_species_list ()
+    vertice, arcs = build_interference_graph (all_reactions, all_species)
     measure = experiment_set[0].measure_expression
     measure_species = [v for v in vertice if v in measure]
     reaching_v = get_vertice_that_reach (vertice, arcs, measure_species)
@@ -151,7 +150,8 @@ def define_priors (subset, reaction_json, subset_directory):
         for param in params:
             name = param["name"]
             distribution = Gamma (param["prior"]["shape"], \
-                    param["prior"]["scale"])
+                   param["prior"]["scale"])
+            # distribution = Uniform (param["prior"]["a"], param["prior"]["b"])
             p = RandomParameter (name, distribution)
             theta.append (p)
     sigma_dist = Gamma (2, .1)
@@ -183,25 +183,6 @@ def add_reaction_to_model (model, reaction_json):
     model.add_reaction (reaction)
 
 
-def initialize_cluster_input ():
-    return []
-
-
-def add_model_to_cluster_input (subset_directory, exp_file, \
-        cluster_json):
-    model_task_obj = {
-        "name": subset_directory,
-        "model_file": "input/" + subset_directory + "/model.sbml",
-        "prior_file": "input/" + subset_directory + "/model.priors",
-        "experiment_file": "input/" + exp_file,
-        "phase1_it": "10000",
-        "sigma_update_n": "1000",
-        "phase2_it": "3000",
-        "phase3_it": "2000",
-    }
-    cluster_json.append (model_task_obj)
-
-
 def calculate_score (subset_directory, exp_file, seed):
     """ Given the subset of a model, calculates the score of this model.
     """
@@ -211,11 +192,21 @@ def calculate_score (subset_directory, exp_file, seed):
     sample_file = subset_dir_path + '/sample.txt'
     exp_file = CURRENT_PATH + '/' + exp_file
     start = time.time()
+    return 0, 0
     try:
         score = 0
-        score = perform_marginal_likelihood (model_file, priors_file, \
-                exp_file, 15000, 1000, 3000, 2000, n_process=15,\
-                sample_output_file=sample_file, seed=seed)
+        score = (-1) * perform_marginal_likelihood (
+                model_file,
+                priors_file,
+                exp_file,
+                15000,
+                1000,
+                3000,
+                3000,
+                n_process=15,
+                sample_output_file=sample_file,
+                seed=seed
+        )
     except ValueError:
         print ("There was no convergence of parameters in burn-in" \
                 + " sampling.")
@@ -229,7 +220,7 @@ def calculate_score (subset_directory, exp_file, seed):
 
 
 def get_candidate_reactions (current_subset):
-    correct_subset = [int (b) for b in '10000000011111111000101']
+    correct_subset = [int (b) for b in '1111111100']
     diff = [i for i in range (len (current_subset)) \
             if correct_subset[i] and not current_subset[i]]
     if diff:
@@ -248,16 +239,12 @@ parser.add_argument ("experiments_file", help="An xml file with the" \
         + "experiment performed.")
 parser.add_argument ("--seed", type=int, nargs='?', default=0, help="Seed for random number" \
         + "generator.")
-parser.add_argument ("--cluster_input", type=bool, nargs="?", const=True,
-        help="Set as true if you just want to generate a cluster run" \
-        + "input file")
 args = parser.parse_args ()
 
 starting_model_file = args.starting_model
 interactions_file = args.interactions_file
 experiments_file = args.experiments_file
 seed =  args.seed
-cluster_input = args.cluster_input
 
 # random seed to chain generation
 random.seed(seed)
@@ -275,15 +262,11 @@ current_subset = starting_subset.copy ()
 computed_subsets = []
 computed_score = []
 
-scores_filename = 'subsets_scores.txt'
-
-cluster_json = None
-if cluster_input:
-    cluster_json = initialize_cluster_input ()
+scores_filename = 'wto_subsets_scores.txt'
 
 # First, let's go up
 n = len (reactions_json)
-while sum (current_subset) <= n - 4:
+while sum (current_subset) <= n:
     print ("\n-------------\nNew iteration")
     print ("Current subset: ", [int (b) for b in current_subset])
     subset_dir = create_subset_dir (current_subset)
@@ -291,12 +274,7 @@ while sum (current_subset) <= n - 4:
     save_model_file (current_model, subset_dir)
     print ("Created and saved priors and model")
     
-    if cluster_json is not None:
-        add_model_to_cluster_input (subset_dir, experiments_file, \
-                cluster_json)
-        score, elapsed_time = 0, 0
-    else:
-        score, elapsed_time = calculate_score (subset_dir, \
+    score, elapsed_time = calculate_score (subset_dir, \
             experiments_file, seed)
 
     scores_file = open (scores_filename, 'a')
@@ -350,10 +328,3 @@ while sum (current_subset) <= n - 4:
 results = [r for r in zip (computed_subsets, computed_score)]
 for r in results:
     print (r)
-
-if cluster_json:
-    with open('cluster_input.json', 'w') as outfile:
-        outfile.write(
-            json.dumps(cluster_json, indent=4)
-        )
-    print ("Your cluster task file is ready at cluster_input.json!")
