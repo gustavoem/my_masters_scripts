@@ -146,43 +146,47 @@ for i, temp in enumerate(temperatures):
         for i, p_name in enumerate(sbml_params):
             p_value = obs[i]
             odes.define_parameter (p_name, p_value)
-            print (p_name + " = " + str (p_value))
+            # print (p_name + " = " + str (p_value))
         simulation = odes.evaluate_exp_on(
             experiment_measure, 
             experiment_times
         )
-        print(simulation)
+        # print(simulation)
         temp_simulations.append (simulation)
     simulation_data.append((temp, temp_simulations))
         
 # Plot simulations!
-# all_iterations = sample_obj.get_all_iterations () 
-# model_num = 0
-# for model in models:
-    # n_time = len (experiment_times)
-    # model_num += 1
-    # for j in range (len (simulation_data[model])):
-        # temp, simulations = simulation_data[model][j]
-        # if simulations == []:
-            # continue
+n_time = len(experiment_times)
+for j in range(len(simulation_data)):
+    temp, simulations = simulation_data[j]
+    if simulations == []:
+        continue
+    print('Plotting temperature = ', temp)
 
-        # simulations = np.array (simulations)
-        # sim_mean = [np.mean (simulations[:, i]) for i in range (n_time)]
-        # sim_std = [np.std (simulations[:, i]) for i in range (n_time)]
-    
-        # figname = 'simulations_' + model + '_' + str (j) + \
-                # '.pdf'
-        # plot_title = 'Avg. simulations with beta = ' + \
-                # '{:0.3e}'.format (temp) + ' of ' + \
-                # model_number_to_name[model_num]
-        # plot_simulations_mean (plot_title, experiment_measure, 
-                # experiment_observations, sim_mean, sim_std, 
-                # experiment_times, figname)
+    simulations = np.array (simulations)
+    sim_mean = [np.mean (simulations[:, i]) for i in range (n_time)]
+    sim_std = [np.std (simulations[:, i]) for i in range (n_time)]
 
-        # figname = 'msimulations_' + model + '_' + str (j) + '.pdf'
-        # plot_title = 'Simulations with beta = ' + \
-                # '{:0.2e}'.format (temp) + ' of ' + \
-                # model_number_to_name[model_num]
-        # plot_multiple_simulations (plot_title, experiment_measure, 
-                # experiment_observations, simulations,experiment_times, 
-                # figname)
+    figname = 'simulations_' + model_name + '.pdf'
+    plot_title = 'Avg. simulations with beta = ' + \
+            '{:0.3e}'.format (temp) + ' of ' + model_name
+    plot_simulations_mean(
+        plot_title,
+        experiment_measure,
+        experiment_observations,
+        sim_mean,
+        sim_std, 
+        experiment_times,
+        figname
+    )
+
+    figname = 'msimulations_' + model_name + '.pdf'
+    plot_title = 'Simulations with beta = ' + \
+            '{:0.2e}'.format (temp) + ' of ' + model_name
+    plot_multiple_simulations(
+        plot_title,
+        experiment_measure, 
+        experiment_observations,
+        simulations,experiment_times, 
+        figname
+    )
