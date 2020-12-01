@@ -31,6 +31,7 @@ def plot_multiple_simulations (plot_title, exp_measure,
     for sim in sims[1:]:
         ax.plot (times, sim, c=(1, 0.25, 0.25, 0.3))
 
+    plt.ylim(790, 820)
     plt.title (plot_title)
     plt.ylabel ('$[' + exp_measure + ']$')
     plt.xlabel ('Time (s)')
@@ -136,9 +137,13 @@ simulation_data = []
 for i, temp in enumerate(temperatures):
     print ("Temperature: " + str (temp))
     temp_sample = sample[i]
-    sample_size = min (50, len (sample))
-    sample_idx = np.random.choice (range (len (sample)), 
-            sample_size, replace=False)
+    print ("sample size = " + str (len(temp_sample)))
+    sample_size = min (50, len (temp_sample))
+    sample_idx = np.random.choice(
+        range(len(temp_sample)), 
+        sample_size,
+        replace=False
+    )
     sub_sample = [temp_sample[i] for i in sample_idx]
     temp_simulations = []
     for obs in sub_sample:
@@ -157,6 +162,7 @@ for i, temp in enumerate(temperatures):
         
 # Plot simulations!
 n_time = len(experiment_times)
+temp_i = 0
 for j in range(len(simulation_data)):
     temp, simulations = simulation_data[j]
     if simulations == []:
@@ -167,7 +173,7 @@ for j in range(len(simulation_data)):
     sim_mean = [np.mean (simulations[:, i]) for i in range (n_time)]
     sim_std = [np.std (simulations[:, i]) for i in range (n_time)]
 
-    figname = 'simulations_' + model_name + '.pdf'
+    figname = 'simulations_' + model_name + '_' + str(temp_i) + '.pdf'
     plot_title = 'Avg. simulations with beta = ' + \
             '{:0.3e}'.format (temp) + ' of ' + model_name
     plot_simulations_mean(
@@ -180,7 +186,7 @@ for j in range(len(simulation_data)):
         figname
     )
 
-    figname = 'msimulations_' + model_name + '.pdf'
+    figname = 'msimulations_' + model_name + '_' + str(temp_i)  + '.pdf'
     plot_title = 'Simulations with beta = ' + \
             '{:0.2e}'.format (temp) + ' of ' + model_name
     plot_multiple_simulations(
@@ -190,3 +196,4 @@ for j in range(len(simulation_data)):
         simulations,experiment_times, 
         figname
     )
+    temp_i += 1
