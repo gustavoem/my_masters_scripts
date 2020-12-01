@@ -86,7 +86,7 @@
     {
         "name": "Ras_inactivation_by_GAP",
         "reactants": [
-            "RaGTP"
+            "RasGTP"
         ],
         "products": [
             "RasGDP"
